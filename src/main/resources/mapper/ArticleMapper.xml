@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.casebbs.dao.ArticleMapper" >
+  <resultMap id="BaseResultMap" type="com.casebbs.model.Article" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="type_id" property="typeId" jdbcType="INTEGER" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="creator" property="creator" jdbcType="INTEGER" />
+    <result column="creator_name" property="creatorName" jdbcType="VARCHAR" />
+    <result column="organ_id" property="organId" jdbcType="INTEGER" />
+    <result column="organ_name" property="organName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="date_no" property="dateNo" jdbcType="INTEGER" />
+    <result column="isused" property="isused" jdbcType="BIT" />
+    <result column="summary" property="summary" jdbcType="VARCHAR" />
+    <result column="ishost" property="ishost" jdbcType="BIT" />
+    <result column="itemcount" property="itemCount" jdbcType="INTEGER" />
+    <result column="totalcount" property="totalCount" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    t.id, t.title, t.type_id, t.description, t.creator, t.creator_name,t.organ_id,t.organ_name, t.create_time,t.date_no, t.isused, t.summary, 
+    t.ishost
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_artical as t
+    where t.id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_artical
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.casebbs.model.Article" >
+    <selectKey resultType="INTEGER" keyProperty="id">
+       SELECT LAST_INSERT_ID()
+  	</selectKey>
+    insert into t_artical (id, title, type_id, 
+      description, creator, creator_name, organ_id,organ_name,
+      create_time,date_no, isused, summary, 
+      ishost)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{typeId,jdbcType=INTEGER}, 
+      #{description,jdbcType=VARCHAR}, #{creator,jdbcType=INTEGER}, #{creatorName,jdbcType=VARCHAR},  #{organId,jdbcType=INTEGER}, #{organName,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP},#{dateNo,jdbcType=INTEGER},  #{isused,jdbcType=BIT}, #{summary,jdbcType=VARCHAR}, 
+      #{ishost,jdbcType=BIT})
+  </insert>  
+  <update id="updateByPrimaryKey" parameterType="com.casebbs.model.Article" >
+    update t_artical
+    set title = #{title,jdbcType=VARCHAR},
+      type_id = #{typeId,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=INTEGER},
+      creator_name = #{creatorName,jdbcType=VARCHAR},
+      organ_id = #{organId,jdbcType=INTEGER},
+      organ_name = #{organName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      date_no = #{dateNo,jdbcType=INTEGER},
+      isused = #{isused,jdbcType=BIT},
+      summary = #{summary,jdbcType=VARCHAR},
+      ishost = #{ishost,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="loadMessageListByType"  resultMap="BaseResultMap" parameterType="java.util.Map"   >
+  	select <include refid="Base_Column_List" />
+  	,(select count(*) from t_artical_item i where i.artical_id = t.id ) as itemcount
+  	from t_artical t  where t.isused = 1 
+  	<if test="typeid != null">
+  		and  t.type_id = #{typeid,jdbcType=INTEGER}
+  	</if>
+  	<if test="title != null">
+  		and  t.title like   CONCAT('%','${title}','%' )
+  	</if>
+  	<if test="startTime != null ">
+  		and t.create_time &gt;=#{startTime,jdbcType=VARCHAR} 
+  		 and t.create_time &lt;=#{endTime,jdbcType=VARCHAR} 
+  	</if>
+  	order by t.create_time desc 
+  </select>
+  
+  
+    <select id="loadMessageListByDate"  parameterType="java.util.Map"  resultMap="BaseResultMap" >
+  		select t.date_no as dateNo,count(t.id) as totalcount ,t.type_id as type_id
+  		
+  		from t_artical t 
+			
+  		where t.isused = 1
+  			  and t.date_no &gt;=#{beginYmd,jdbcType=INTEGER} 
+  			  and t.date_no &lt;=#{endYmd,jdbcType=INTEGER} 
+  			  group by  t.date_no,t.type_id
+			 
+  </select>
+  
+</mapper>

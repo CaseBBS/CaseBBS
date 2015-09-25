@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.casebbs.dao.ArticleAttchsMapper" >
+  <resultMap id="BaseResultMap" type="com.casebbs.model.ArticleAttchs" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="article_id" property="articleId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="attch_type" property="attchType" jdbcType="VARCHAR" />
+    <result column="attch_url" property="attchUrl" jdbcType="VARCHAR" />
+    <result column="upload_time" property="uploadTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, article_id, name, attch_type, attch_url, upload_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_artical_attch
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_artical_attch
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.casebbs.model.ArticleAttchs" >
+    insert into t_artical_attch (id, article_id, name, 
+      attch_type, attch_url, upload_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{articleId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{attchType,jdbcType=VARCHAR}, #{attchUrl,jdbcType=VARCHAR}, #{uploadTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.casebbs.model.ArticleAttchs" >
+    insert into t_artical_attch
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="articleId != null" >
+        article_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="attchType != null" >
+        attch_type,
+      </if>
+      <if test="attchUrl != null" >
+        attch_url,
+      </if>
+      <if test="uploadTime != null" >
+        upload_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="articleId != null" >
+        #{articleId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="attchType != null" >
+        #{attchType,jdbcType=VARCHAR},
+      </if>
+      <if test="attchUrl != null" >
+        #{attchUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadTime != null" >
+        #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.casebbs.model.ArticleAttchs" >
+    update t_artical_attch
+    <set >
+      <if test="articleId != null" >
+        article_id = #{articleId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="attchType != null" >
+        attch_type = #{attchType,jdbcType=VARCHAR},
+      </if>
+      <if test="attchUrl != null" >
+        attch_url = #{attchUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadTime != null" >
+        upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.casebbs.model.ArticleAttchs" >
+    update t_artical_attch
+    set article_id = #{articleId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      attch_type = #{attchType,jdbcType=VARCHAR},
+      attch_url = #{attchUrl,jdbcType=VARCHAR},
+      upload_time = #{uploadTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <select id="loadMessageAttchsById"  resultMap="BaseResultMap" parameterType="java.lang.Integer"  >
+  	select <include refid="Base_Column_List" />
+  	from t_artical_attch   where article_id = #{id,jdbcType=INTEGER} 
+  </select>
+</mapper>
