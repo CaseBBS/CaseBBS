@@ -206,8 +206,6 @@ function publishNewMessage(){
 	.dialog({
 		id : 'dlgPublishInfo',
 		title : '发布新帖',   
-		width: "100%", 
-		height: "100%",
 		content : document.getElementById("div_newMessage"),
 		lock : false,
 		initFn : function() {

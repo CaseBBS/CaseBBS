@@ -115,7 +115,7 @@
    	<div style="display:none">
    		<div id="attch_toolbar">
    			<p  style="height:30px;margin-top:15px">
-   				<input type="text" class="easyui-validatebox" readonly="readonly" id="txtfilename"><a id="btnfindFile"  href="javascript:void(0);" class="easyui-linkbutton"  iconcls="icon-add"   >选择文件</a>
+   				<input type="text" class="easyui-validatebox" readonly="readonly" id="txtfilename"><a id="btnfindFile"  href="javascript:void(0);" class="easyui-linkbutton"  iconcls="icon-add"   >选择文件</a><span style="font-size:10px;color:red;margin-left:5px">*请先保存发帖内容再上传附件</span>
    			</p>
    		</div>
    	</div>
