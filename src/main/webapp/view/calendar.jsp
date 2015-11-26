@@ -5,17 +5,17 @@
 <%@ page import="com.casebbs.viewmodel.UserQuery"%>
 
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML>
 <html>
 <head>
 	<%@ include file="/view/lib.jsp"%>
 	<base href="<%=basePath%>">
-	<script src='<%=basePath%>script/ajaxupload.3.9.js' 	type='text/javascript'></script> 
-	<script src='<%=basePath%>script/base/fileUpload.js' 	type='text/javascript'></script>  
+	<%-- <script src='<%=basePath%>script/ajaxupload.3.9.js' 	type='text/javascript'></script> 
+	<script src='<%=basePath%>script/base/fileUpload.js' 	type='text/javascript'></script>   --%>
 	<script src='<%=basePath%>script/base/dutycalendar.js' 	type='text/javascript'></script>   
 	<link href='<%=basePath%>resource/calendarImage/dateStyle.css'	media='all' rel='stylesheet' type='text/css' /> 
     <title>案件侦查互动交流平台</title> 
-    
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   </head>
   
   <body style="padding:0"> 
@@ -87,10 +87,10 @@
 								<label style="font-size:20px;font-weight:bold">类型：</label>
 							</td>
 							<td style="width:200px">
-								<input id="txtarticalType"  style="width:204px" class="easyui-combobox"  data-options="valueField:'id',editable:false,textField:'name',data:[{id: 1,name: '盗抢机动车'},{id: 2,name: '盗窃车内物品'},{id: 3,name: '入室盗窃'},{id: 4,name: '抢夺、抢劫'},{id: 5,name: '诈骗'},{id: 6,name: '故障报送'},{id: 7,name: '工作建议'}]" />
+								<input id="txtarticalType"  style="width:204px" class="easyui-combobox"  data-options="valueField:'id',editable:false,textField:'name',data:[{id: 1,name: '盗抢机动车'},{id: 2,name: '盗窃车内物品'},{id: 3,name: '入室盗窃'},{id: 4,name: '抢夺、抢劫'},{id: 5,name: '诈骗'},{id: 6,name: '故障报送'},{id: 7,name: '工作需求'}]" />
 							</td>
 							<td style="width:100px;text-align:right;">
-								<label style="font-size:20px;font-weight:bold">标注：</label>
+								<label style="font-size:20px;font-weight:bold">标注：</label> <span style="color:red;font-size:10px;">*勾选后发帖标题显著提示</span>
 							</td>
 							<td style="text-align:left">
 								<input id="txisHost" type="checkbox"  onclick="onCheckShop();"  />
@@ -113,7 +113,7 @@
 							</td>
 						</tr>
 					</table> 
-					<div id="attchMentsGrid" style="padding:10px;">
+					<div id="attchMentsGrid" style="padding:10px; width:900px;heigth:100%">
 					
 					</div>
    		 </div>
@@ -121,7 +121,13 @@
    	<div style="display:none">
    		<div id="attch_toolbar">
    			<p  style="height:30px;margin-top:15px">
-   				<input type="text" class="easyui-validatebox" readonly="readonly" id="txtfilename"><a id="btnfindFile"  href="javascript:void(0);" class="easyui-linkbutton"  iconcls="icon-add"   >选择文件</a><span style="font-size:10px;color:red;margin-left:5px">*请先保存发帖内容再上传附件</span>
+   				<span>上传附件
+	   				<form id="fileForms" name="fileForms" action="fileUpload/uploadAttch.do"  enctype="multipart/form-data" method="post" style="margin:0;padding:0;">
+					       	<input type="hidden" name="messageid" id="messageid" />
+					       	<input type="file" name="file" id="jfile"  onChange="excelChange(this);">
+					</form>
+				</span>
+   				<!-- <input type="text" class="easyui-validatebox" readonly="readonly" id="txtfilename"><a id="btnfindFile"  href="javascript:void(0);" class="easyui-linkbutton"  iconcls="icon-add"   >选择文件</a><span style="font-size:10px;color:red;margin-left:5px">*请先保存发帖内容再上传附件</span> -->
    			</p>
    		</div>
    	</div>

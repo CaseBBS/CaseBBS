@@ -7,6 +7,7 @@ import com.casebbs.core.ListResult;
 import com.casebbs.model.Article;
 import com.casebbs.model.ArticleAttchs;
 import com.casebbs.model.ArticleItem;
+import com.casebbs.model.ArticleItemAttchs;
 
 public interface CaseBBSService {
 
@@ -28,5 +29,9 @@ public interface CaseBBSService {
 	void insertAttchMents(ArticleAttchs attch);
 
 	void deleteAttchById(Integer id);
+
+	List<ArticleItemAttchs> loadMessageItemAttchsById(Integer id);
+
+	void insertItemAttchMents(ArticleItemAttchs attch);
 
 }

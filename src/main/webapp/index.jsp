@@ -1,13 +1,14 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ include file="/view/lib.jsp"%>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML>
 <html>
 <head>
 	<base href="<%=basePath%>">
 	<script src='<%=basePath%>script/dutycalendar.js' 	type='text/javascript'></script>  
 	<link href='<%=basePath%>resource/calendarImage/dateStyle.css'	media='all' rel='stylesheet' type='text/css' /> 
     <title>案件侦查互动交流平台</title> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   </head>
   
   <body>

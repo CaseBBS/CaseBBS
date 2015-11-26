@@ -16,5 +16,13 @@ function getUrlArgs() {
 }
 function getCurrentDate(){
 	var mydate = new Date();
-	return mydate.toLocaleDateString().replace("/", "-").replace("/", "-")+" "+mydate.getHours()+":"+mydate.getMinutes()+":00"; 
+	var m = mydate.getMonth()+1;
+	var month = m>9?m:"0"+m;
+	var d = mydate.getDay();
+	var day = d>9?d:"0"+d;
+	var h = mydate.getHours();
+	var hour = h>9?h:"0"+9;
+	var mt = mydate.getMinutes();
+	var minites = mt>9?mt:"0"+mt;
+	return mydate.getFullYear()+"-"+month+"-"+day+" "+hour+":"+minites+":00";  
 }

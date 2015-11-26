@@ -7,13 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
  
 
+
+
 import com.casebbs.core.ListResult;
 import com.casebbs.dao.ArticleAttchsMapper;
+import com.casebbs.dao.ArticleItemAttchsMapper;
 import com.casebbs.dao.ArticleItemMapper;
 import com.casebbs.dao.ArticleMapper;
 import com.casebbs.model.Article;
 import com.casebbs.model.ArticleAttchs;
 import com.casebbs.model.ArticleItem;
+import com.casebbs.model.ArticleItemAttchs;
 import com.casebbs.service.CaseBBSService;
 @Service
 public class CaseBBSServiceImpl  implements CaseBBSService {
@@ -21,6 +25,7 @@ public class CaseBBSServiceImpl  implements CaseBBSService {
 	@Autowired ArticleMapper articleMapper;
 	@Autowired ArticleItemMapper articleItemMapper;
 	@Autowired ArticleAttchsMapper articleAttchsMapper;
+	@Autowired ArticleItemAttchsMapper articleItemAttchsMapper;
 
 	public ListResult<Article> loadMessageListByType(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -64,5 +69,15 @@ public class CaseBBSServiceImpl  implements CaseBBSService {
 	public void deleteAttchById(Integer id) {
 		// TODO Auto-generated method stub
 		articleAttchsMapper.deleteByPrimaryKey(id);
+	}
+	@Override
+	public List<ArticleItemAttchs> loadMessageItemAttchsById(Integer id) {
+		// TODO Auto-generated method stub
+		return articleItemAttchsMapper.loadMessageItemAttchsById(id);
+	}
+	@Override
+	public void insertItemAttchMents(ArticleItemAttchs attch) {
+		// TODO Auto-generated method stub
+		articleItemAttchsMapper.insert(attch);
 	}
 }

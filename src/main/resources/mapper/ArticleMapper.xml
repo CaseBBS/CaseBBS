@@ -69,7 +69,7 @@
   		and  t.type_id = #{typeid,jdbcType=INTEGER}
   	</if>
   	<if test="title != null">
-  		and  t.title like   CONCAT('%','${title}','%' )
+  		and ( t.title like   CONCAT('%','${title}','%' ) or t.summary like   CONCAT('%','${title}','%' ) or  t.description like   CONCAT('%','${title}','%' ))
   	</if>
   	<if test="startTime != null ">
   		and t.create_time &gt;=#{startTime,jdbcType=VARCHAR} 

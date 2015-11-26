@@ -9,7 +9,7 @@
 			+ path + "/"; 
 %>
 <!--[if lt IE 9]>
-    <script src='<%=basePath%>js/sys/html5shiv.js' type='text/javascript'></script>
+    <script src='<%=basePath%>script/html5shiv.js' type='text/javascript'></script>
     <![endif]-->
    
 <link href='<%=basePath%>css/easyui/icon.css'	media='all' rel='stylesheet' type='text/css' />

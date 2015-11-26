@@ -22,6 +22,7 @@ import com.casebbs.core.Result;
 import com.casebbs.model.Article;
 import com.casebbs.model.ArticleAttchs;
 import com.casebbs.model.ArticleItem;
+import com.casebbs.model.ArticleItemAttchs;
 import com.casebbs.service.CaseBBSService;
 
 /**
@@ -80,7 +81,7 @@ public class CaseBBSController {
 		ModelAndView mv = new ModelAndView("/calendar"); 
 		userName = new String(userName.getBytes("ISO-8859-1"), "UTF-8");
 		Integer userMark = 2;
-		if(userName.equals("")){
+		if(userName.equals("admin")){
 			userMark = 1;
 		}
 		
@@ -259,7 +260,7 @@ public class CaseBBSController {
 						}else if (s.getTypeId() == 6) {
 							result += "故障报送：" + s.getTotalCount();
 						} else if (s.getTypeId() == 7) {
-							result += "工作建议：" + s.getTotalCount();
+							result += "工作需求：" + s.getTotalCount();
 						}
 
 						result += "</li>";
@@ -291,7 +292,7 @@ public class CaseBBSController {
 		return weekDaysCode[intWeek];
 	}
 
-	@RequestMapping(value = "/getMessageList.do", produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/getMessageList.do")
 	@ResponseBody
 	public String getMessageList(HttpServletRequest request,
 			@RequestParam(value = "page", required = false) Integer page,
@@ -304,8 +305,8 @@ public class CaseBBSController {
 			// * page == 0 ? 1 : page; map.put("pageStart", (page - 1) * rows);
 			map.put("typeid", param);
 			if (title.length() > 0 && !"".equals(title)) {
-				title = new String(title.getBytes("ISO-8859-1"), "UTF-8");
-				map.put("title", title);
+				String tt = new String(title.getBytes("ISO-8859-1"), "UTF-8");
+				map.put("title", tt);
 			} else {
 				String startTime = date + " 00:00:00";
 				String endTime = date + " 23:59:00";
@@ -465,16 +466,46 @@ public class CaseBBSController {
 	@RequestMapping(value = "/getMessageAttchs.do", produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String getMessageAttchs(HttpServletRequest request,
-			@RequestParam(value = "id", required = true) Integer id) {
+			@RequestParam(value = "id", required = false) Integer id) {
 		List<ArticleAttchs> list = new ArrayList<ArticleAttchs>();
 		try {
+			if(id==null){
+				ListResult<ArticleAttchs> result = new ListResult<ArticleAttchs>(list,
+						true, "");
+				return result.toJson();
+			}else{
 			list = caseBBSService.loadMessageAttchsById(id);
 			boolean isSuccess = true;
 			ListResult<ArticleAttchs> result = new ListResult<ArticleAttchs>(list,
 					isSuccess, "查询数据成功");
 			return result.toJson();
+			}
 		} catch (Exception ex) {
 			ListResult<ArticleAttchs> result = new ListResult<ArticleAttchs>(list,
+					false, ex.getMessage());
+			return result.toJson();
+		}
+	}
+
+	@RequestMapping(value = "/getMessageItemAttchs.do", produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String getMessageItemAttchs(HttpServletRequest request,
+			@RequestParam(value = "id", required = false) Integer id) {
+		List<ArticleItemAttchs> list = new ArrayList<ArticleItemAttchs>();
+		try {
+			if(id==null){
+				ListResult<ArticleItemAttchs> result = new ListResult<ArticleItemAttchs>(list,
+						true, "");
+				return result.toJson();
+			}else{
+			list = caseBBSService.loadMessageItemAttchsById(id);
+			boolean isSuccess = true;
+			ListResult<ArticleItemAttchs> result = new ListResult<ArticleItemAttchs>(list,
+					isSuccess, "查询数据成功");
+			return result.toJson();
+			}
+		} catch (Exception ex) {
+			ListResult<ArticleItemAttchs> result = new ListResult<ArticleItemAttchs>(list,
 					false, ex.getMessage());
 			return result.toJson();
 		}

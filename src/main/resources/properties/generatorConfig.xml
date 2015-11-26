@@ -34,7 +34,7 @@
         </javaClientGenerator>  
 
  
-	       <table tableName="t_artical_attch" domainObjectName="ArticleAttchs"
+	       <table tableName="t_artical_item_attch" domainObjectName="ArticleItemAttchs"
            enableSelectByExample="false"
 	       enableDeleteByExample="false"
 	       enableCountByExample="false"

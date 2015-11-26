@@ -52,7 +52,7 @@ var MessageManage = {
 		},
 		loadQJGridList:function(){
 			$('#qjGrid').datagrid({
-				url : 'caseBBS/getMessageList.do?param=4&title='+m_title+"&date="+m_dates, 
+				url : 'caseBBS/getMessageList.do?param=4&title='+encodeURI(m_title)+"&date="+m_dates, 
 				fitColumns : true,	
 				rownumbers : true,
 				pagination : false,
@@ -92,7 +92,7 @@ var MessageManage = {
 		},
 		loadJDCGridList:function(){
 			$('#jdcGrid').datagrid({
-				url : 'caseBBS/getMessageList.do?param=1&title='+m_title+"&date="+m_dates, 
+				url : 'caseBBS/getMessageList.do?param=1&title='+encodeURI(m_title)+"&date="+m_dates, 
 				fitColumns : true,
 				rownumbers : true,
 				pagination : false,
@@ -132,7 +132,7 @@ var MessageManage = {
 		},
 		loadJDWGridList:function(){
 			$('#jdwGrid').datagrid({
-				url : 'caseBBS/getMessageList.do?param=2&title='+m_title+"&date="+m_dates, 
+				url : 'caseBBS/getMessageList.do?param=2&title='+encodeURI(m_title)+"&date="+m_dates, 
 				fitColumns : true,
 				rownumbers : true,
 				pagination : false,
@@ -172,7 +172,7 @@ var MessageManage = {
 		},
 		loadZPGridList:function(){
 			$('#zpGrid').datagrid({
-				url : 'caseBBS/getMessageList.do?param=5&title='+m_title+"&date="+m_dates, 
+				url : 'caseBBS/getMessageList.do?param=5&title='+encodeURI(m_title)+"&date="+m_dates, 
 				fitColumns : true,
 				rownumbers : true,
 				pagination : false,
@@ -212,7 +212,7 @@ var MessageManage = {
 		},
 		loadRDGridList:function(){
 			$('#rdGrid').datagrid({
-				url : 'caseBBS/getMessageList.do?param=3&title='+m_title+"&date="+m_dates, 
+				url : 'caseBBS/getMessageList.do?param=3&title='+encodeURI(m_title)+"&date="+m_dates, 
 				fitColumns : true,
 				rownumbers : true,
 				pagination : false,
@@ -254,7 +254,7 @@ var MessageManage = {
 		},
 		loadGZGridList:function(){
 			$('#gzGrid').datagrid({
-				url : 'caseBBS/getMessageList.do?param=6&title='+m_title+"&date="+m_dates, 
+				url : 'caseBBS/getMessageList.do?param=6&title='+encodeURI(m_title)+"&date="+m_dates, 
 				fitColumns : true,
 				rownumbers : true,
 				pagination : false,
@@ -296,7 +296,7 @@ var MessageManage = {
 		},
 		loadJYGridList:function(){
 			$('#jyGrid').datagrid({
-				url : 'caseBBS/getMessageList.do?param=7&title='+m_title+"&date="+m_dates, 
+				url : 'caseBBS/getMessageList.do?param=7&title='+encodeURI(m_title)+"&date="+m_dates, 
 				fitColumns : true,
 				rownumbers : true,
 				pagination : false,
@@ -360,7 +360,7 @@ var MessageManage = {
 				content : document.getElementById("div_newMessage"),
 				lock : false,
 				initFn : function() {
-					InitUploadFun();
+					//InitUploadFun();
 					MessageManage.clearFrom();
 					$('#attchMentsGrid').datagrid({
 						url : 'caseBBS/getMessageAttchs.do',
@@ -406,7 +406,11 @@ var MessageManage = {
 		                     focus: true
 		                 },
 		                 {
-		                     name: '关闭'
+		                     name: '关闭',
+		                     callback: function () { 
+		                    	 //getDateData(y + "-" + m + "-" + 1);// 初始化默认月份数据
+		                    	 window.location.href= "/casebbs/caseBBS/gotoArticleList.do?date="+m_dates+"&userName="+m_userName+"&userMark="+m_userMark;
+		                     }
 		                 }
 		            ]
 			});
@@ -447,6 +451,7 @@ var MessageManage = {
 					if (req.isSuccess) { 
 						m_message_id = req.data.id;
 						$("#msgId").val(m_message_id);
+						$("#messageid").val(m_message_id);
 						$.messager.alert("系统提示","<span style='color:black'>发帖成功~若有相关附件，请点击上传附件，若无附件，请点击“关闭”按钮关闭当前页面</span>","info");
 						//MessageManage.clearFrom();
 						//m_publishInfo_dlg.close();
@@ -479,7 +484,7 @@ var MessageManage = {
 			$("#txtcontent").val("");
 		},
 		deleteMessage:function(id,typeId){
-			$.messager.confirm('操作提示', "确定要删除?",
+			$.messager.confirm('操作提示', "<span style='color:black'>确定要删除?</span>",
 					function(r) {
 						if (r) {
 							MessageManage.deleteAction(id,typeId);
@@ -563,6 +568,24 @@ var MessageManage = {
 };
 
 
+function excelChange(file){
+	  /*if(!(/(?:xls)$/i.test(file.value))) {
+	        $.messager.alert('错误', "只允许上传xls的文档", 'error'); 
+	        if(window.ActiveXObject) {//for IE
+	            file.select();//select the file ,and clear selection
+	            document.selection.clear();
+	        } else if(window.opera) {//for opera
+	            file.type="text";file.type="file";
+	        } else file.value="";//for FF,Chrome,Safari
+	    } else {*/	
+	    	$('#fileForms').form('submit',{
+				success : function(data) {
+					reloadListAction();
+					$("#jfile").val("");
+				}
+			});	 
+	    //}
+}
 function reloadListAction(){
 	var msgId = $("#msgId").val();
 	$('#attchMentsGrid').datagrid("reload",{"id":msgId});

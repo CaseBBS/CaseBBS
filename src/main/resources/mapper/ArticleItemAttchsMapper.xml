@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.casebbs.dao.ArticleItemAttchsMapper" >
+  <resultMap id="BaseResultMap" type="com.casebbs.model.ArticleItemAttchs" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="articla_id" property="articlaId" jdbcType="INTEGER" />
+    <result column="item_id" property="itemId" jdbcType="INTEGER" />
+    <result column="attch_url" property="attchUrl" jdbcType="VARCHAR" />
+    <result column="attch_type" property="attchType" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, articla_id, item_id, attch_url, attch_type, create_time,creator
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_artical_item_attch
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_artical_item_attch
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.casebbs.model.ArticleItemAttchs" >
+    insert into t_artical_item_attch (id, name, articla_id, 
+      item_id, attch_url, attch_type, 
+      create_time,creator)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{articlaId,jdbcType=INTEGER}, 
+      #{itemId,jdbcType=INTEGER}, #{attchUrl,jdbcType=VARCHAR}, #{attchType,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=DATE}, #{creator,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.casebbs.model.ArticleItemAttchs" >
+    insert into t_artical_item_attch
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="articlaId != null" >
+        articla_id,
+      </if>
+      <if test="itemId != null" >
+        item_id,
+      </if>
+      <if test="attchUrl != null" >
+        attch_url,
+      </if>
+      <if test="attchType != null" >
+        attch_type,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="articlaId != null" >
+        #{articlaId,jdbcType=INTEGER},
+      </if>
+      <if test="itemId != null" >
+        #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="attchUrl != null" >
+        #{attchUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="attchType != null" >
+        #{attchType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.casebbs.model.ArticleItemAttchs" >
+    update t_artical_item_attch
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="articlaId != null" >
+        articla_id = #{articlaId,jdbcType=INTEGER},
+      </if>
+      <if test="itemId != null" >
+        item_id = #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="attchUrl != null" >
+        attch_url = #{attchUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="attchType != null" >
+        attch_type = #{attchType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.casebbs.model.ArticleItemAttchs" >
+    update t_artical_item_attch
+    set name = #{name,jdbcType=VARCHAR},
+      articla_id = #{articlaId,jdbcType=INTEGER},
+      item_id = #{itemId,jdbcType=INTEGER},
+      attch_url = #{attchUrl,jdbcType=VARCHAR},
+      attch_type = #{attchType,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      creator = #{creator,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+    <select id="loadMessageItemAttchsById"  resultMap="BaseResultMap" parameterType="java.lang.Integer"  >
+  	select <include refid="Base_Column_List" />
+  	from t_artical_item_attch   where articla_id = #{id,jdbcType=INTEGER} 
+  </select>
+  
+</mapper>
