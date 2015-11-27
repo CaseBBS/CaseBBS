@@ -19,7 +19,7 @@
 		<div data-options="region:'north',split:true,border:false"
 			style="height:60px">
 			<h2 id="h_title"></h2>
-			<!-- <a onclick='MessageManage.backToMessageList()' style="float:right;width:80px;line-height:3;color:white;text-decoration: none;" href="javascript:void(0);">返回列表</a> --><a onclick='MessageManage.backToCalendar()'  href="javascript:void(0);" style="float:right;width:80px;line-height:3;color:black;text-decoration: none;">返回首页</a>
+			<!-- <a onclick='MessageManage.backToMessageList()' style="float:right;width:80px;line-height:3;color:white;text-decoration: none;" >返回列表</a> --><a onclick='MessageManage.backToCalendar()'  style="float:right;width:80px;line-height:3;color:black;text-decoration: none;">返回首页</a>
   	 				<img src="<%=basePath %>resource/calendarImage/newmessage.png" style="float:right;margin-right:30px"  height="30px" onclick="MessageManage.publishNewMessage()" />
 			</div>
 		<div data-options="region:'center',split:true,border:false">
@@ -67,9 +67,9 @@
 	</div> 
 	<div style="display:none"> 
 		<div id="div_newMessage" style="width:100%;height:100%">
-					<table id="newmessageInfo" width="900px" height="300px" cellspacing="0" >
+					<table id="newmessageInfo" width="900px" height="300px" cellspacing="0" border="0" >
 						<tr>
-							<td style="width:80px;text-align:right;border:1px solid black;color:white;background:#555">
+							<td style="width:80px;text-align:right;">
 								<input type="hidden" id="msgId" />
 								<label style="font-size:20px;font-weight:bold">标题：</label>
 							</td>
@@ -78,7 +78,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td style="width:80px;text-align:right;border:1px solid black;color:white;background:#555">
+							<td style="width:80px;text-align:right;">
 								<label style="font-size:20px;font-weight:bold">类型：</label>
 							</td>
 							<td style="width:200px">
@@ -88,11 +88,11 @@
 								<label style="font-size:20px;font-weight:bold">标注：</label>
 							</td>
 							<td style="text-align:left">
-								<input id="txisHost" type="checkbox" onclick="MessageManage.onCheckShop();" /> <span style="color:red;font-size:10px;">*勾选后发帖标题显著提示</span>
+								<input id="txisHost" type="checkbox" onclick="MessageManage.onCheckShop();" /><span style="color:red;font-size:10px;">*勾选后发帖标题显示新标签提示</span>
 							</td>
 						</tr>
 						<tr>
-							<td style="width:80px;text-align:right;border:1px solid black;color:white;background:#555"> 
+							<td style="width:80px;text-align:right;"> 
 								<label style="font-size:20px;font-weight:bold">内容：</label>
 							</td>
 							<td colspan="3">
@@ -100,32 +100,42 @@
 							</td>
 						</tr>
 						<tr>
-							<td style="width:80px;text-align:right;border:1px solid black;color:white;background:#555">
+							<td style="width:80px;text-align:right;">
 								<label style="font-size:20px;font-weight:bold">备注：</label>
 							</td>
 							<td colspan="3">
 								<textarea id="txtdescription" style="width:100%" rows="2"></textarea>
 							</td>
 						</tr>
-					</table> 
-					<div id="attchMentsGrid" style="padding:10px;">
-					</div>
+					</table>  
+						<div> 
+				   			<p  style="height:30px;margin-top:15px">
+				   				<span style="font-size:20px;font-weight:bold">上传附件
+								</span>
+								<div style="width:100%;margin-left:50px;">
+					   				<form id="fileForms" name="fileForms" action="fileUpload/uploadAttch.do"  enctype="multipart/form-data" method="post" style="margin:0;padding:0;">
+									       	<input type="hidden" name="messageid" id="messageid" />
+									       	<p>
+									       		<input type="file" style="width:300px" name="file1" />
+								       		</p>
+									       	<p>
+									       	<input type="file" style="width:300px"  name="file2" /> 
+								       		</p>
+									       	<p>
+									       	<input type="file"  style="width:300px" name="file3" /> 
+								       		</p>
+									       	<p>
+									       	<input type="file"  style="width:300px" name="file4" />
+									       	</p>
+								       		<p>
+									       	<input type="file"  style="width:300px" name="file5" />
+								       		</p>
+									</form>
+								</div>
+				   				<!-- <input type="text" class="easyui-validatebox" readonly="readonly" id="txtfilename"><a id="btnfindFile"  href="javascript:void(0);" class="easyui-linkbutton"  iconcls="icon-add"   >选择文件</a><span style="font-size:10px;color:red;margin-left:5px">*请先保存发帖内容再上传附件</span> -->
+				   			</p>
+				   		</div>
    		 </div>
-   	</div>
-   	<div style="display:none">
-   		<div id="attch_toolbar">
-   			<p  style="height:30px;margin-top:15px">
-   				
-   				<span>上传附件
-	   				<form id="fileForms" name="fileForms" action="fileUpload/uploadAttch.do"  enctype="multipart/form-data" method="post" style="margin:0;padding:0;">
-					       	<input type="hidden" name="messageid" id="messageid" />
-					       	<input type="file" name="file" id="jfile"  onChange="excelChange(this);">
-					</form>
-				</span>
-   				
-   				<!-- <input type="text" class="easyui-validatebox" readonly="readonly" id="txtfilename"><a id="btnfindFile"  href="javascript:void(0);" class="easyui-linkbutton"  iconcls="icon-add"   >选择文件</a><span style="font-size:10px;color:red;margin-left:5px">*请先保存发帖内容再上传附件</span> -->
-   			</p>
-   		</div>
-   	</div>
+   	</div> 
 </body>
 </html>

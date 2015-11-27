@@ -81,7 +81,7 @@ public class CaseBBSController {
 		ModelAndView mv = new ModelAndView("/calendar"); 
 		userName = new String(userName.getBytes("ISO-8859-1"), "UTF-8");
 		Integer userMark = 2;
-		if(userName.equals("admin")){
+		if(userName.equals("xzj001")){
 			userMark = 1;
 		}
 		

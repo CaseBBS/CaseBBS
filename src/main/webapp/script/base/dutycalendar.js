@@ -33,37 +33,6 @@ $(function() {
 }); 
 function InitData(){
 	clearFrom();
-	$('#attchMentsGrid').datagrid({
-		url : 'caseBBS/getMessageAttchs.do?random='+Math.random(), 
-		param:{"id":0},
-		fitColumns : true,	
-		rownumbers : true,
-		pagination : false,
-		pageNumber : 1,
-		pageSize : 10,
-		nowrap : false,
-		height:250,
-		idField : 'id',          
-		checkOnSelect: false,
-        selectOnCheck: true, 
-        onClickRow: attchsGridclickRow,
-		toolbar : "#attch_toolbar",
-		columns : [ [ 
-		              { title : 'id', field : 'id', hidden : true },
-		              { title : '附件名称', field : 'name', align : 'left', width : 150 ,formatter:function(value,rowData,index){
-		            	  return "<span style='color:black'>"+value+"</span>";
-		              }}, 
-		              { title : '附件类型', field : 'attchType', align : 'left', width : 100 ,formatter:function(value,rowData,index){
-		            	  return "<span style='color:black'>"+value+"</span>";
-		              }},
-		              { title : '上传时间', field : 'uploadTime', align : 'left', width : 100 ,formatter:function(value,rowData,index){
-		            	  return "<span style='color:black'>"+value+"</span>";
-		              }},
-		              { title : '操作',   field : 'operation', align : 'center', width : 100,formatter:function(value,rowData,index){
-	            		  return "<a href='javascript:void(0)' style='color:blue;text-decoration: none;' onclick='deleteItem("+rowData.id+")' >删除</a>";
-		              }}
-		          ] ]
-	});
 }
 // 设置日历窗体的高度
 function changeDivHeight() {
@@ -223,7 +192,8 @@ function onClickData(date) {
 	//	dt = dt.substr(0, 4) + "0" + dt.substr(4, 7);
 	//} 
 	//$.post("/BPHCenter/dutyRouteWeb/gotoDutyItem.do?sessionId="+sessionId+"&organId="+m_dutyCalendar_Org.id+"&ymd="+dtime);
-	window.location.href="/casebbs/caseBBS/gotoArticleList.do?date="+date+"&userName="+m_userName+"&userMark="+m_userMark;
+	window.navigate("/casebbs/caseBBS/gotoArticleList.do?date="+date+"&userName="+m_userName+"&userMark="+m_userMark);
+	//window.location.href="/casebbs/caseBBS/gotoArticleList.do?date="+date+"&userName="+m_userName+"&userMark="+m_userMark;
 }; 
 /**
  * 查询按钮事件，查询结果直接跳转到列表页面
@@ -255,20 +225,12 @@ function publishNewMessage(){
                      focus: true
                  },
                  {
-                     name: '关闭',
-                     callback: function () { 
-                    	 //getDateData(y + "-" + m + "-" + 1);// 初始化默认月份数据
-                    	 window.location.href="/casebbs/caseBBS/gotoIndex.do?userName="+m_userName;
-                     }
+                     name: '关闭'
                  }
             ]
-	});
-	$("#attchMentsGrid").datagrid("loadData", []);
+	}); 
 	$("#messageid").val(0);
-};
-function attchsGridclickRow(index, data) {
-	$("#attchMentsGrid").datagrid("unselectRow", index);
-}
+}; 
 function onCheckShop(){
 	var s = $("input[type='checkbox']:checked");
 	if(s.length>0){  
@@ -277,7 +239,7 @@ function onCheckShop(){
 		m_isHost = false;
 	}
 }
-function saveMessageAction(){
+function saveMessageAction(){ 
 	var messageObj = {};
 	messageObj.title=$("#txttitle").val();
 	messageObj.typeId=$("#txtarticalType").combobox("getValue");
@@ -300,12 +262,12 @@ function saveMessageAction(){
 				m_message_id = req.data.id;
 				$("#msgId").val(m_message_id);
 				$("#messageid").val(m_message_id);
-				$.messager.alert("系统提示","<span style='color:black'>发帖成功~若有相关附件，请点击上传附件，若无附件，请点击“关闭”按钮关闭当前页面</span>","info");
+				excelChange();
 			}else{
 				$.messager.alert("系统提示","<span style='color:black'>发帖失败咯~</span>","error");
 			}
 		}
-	});
+	}); 
 }
 function clearFrom(){
 	m_message_id = 0;
@@ -315,8 +277,7 @@ function clearFrom(){
 	$("#txttitle").val("");
 	$("#txtarticalType").combobox("setValue",1);
 	$("#txtdescription").val("");
-	$("#txtcontent").val("");
-	$("#jfile").val("");
+	$("#txtcontent").val(""); 
 }
 function searchAction(){ 
 	var title = $.trim($("#sch_name").val());
@@ -326,11 +287,7 @@ function searchAction(){
 		window.location.href="/casebbs/caseBBS/gotoArticleList.do?date="+m_date+"&userName="+m_userName+"&userMark="+m_userMark+"&title="+title;
 	}
 }
-
-function reloadListAction(){
-	var msgId = $("#msgId").val();
-	$('#attchMentsGrid').datagrid("reload",{"id":msgId});
-}
+ 
 function deleteItem(id){
 	$.ajax({
 		url : "caseBBS/deleteMessageAttch.do?id="+id,
@@ -339,8 +296,7 @@ function deleteItem(id){
 		success : function(req) {
 			if (req.isSuccess) { 
 				$.messager.alert("操作提示","<span style='color:black'>删除成功~</span>","info");
-				var msgId = $("#msgId").val();
-				$('#attchMentsGrid').datagrid("reload",{"id":msgId});
+				var msgId = $("#msgId").val(); 
 			}else{
 				$.messager.alert("操作提示","<span style='color:black'>删除失败~</span>","error");
 			}
@@ -349,22 +305,12 @@ function deleteItem(id){
 }
 
 
-function excelChange(file){
-	  /*if(!(/(?:xls)$/i.test(file.value))) {
-	        $.messager.alert('错误', "只允许上传xls的文档", 'error'); 
-	        if(window.ActiveXObject) {//for IE
-	            file.select();//select the file ,and clear selection
-	            document.selection.clear();
-	        } else if(window.opera) {//for opera
-	            file.type="text";file.type="file";
-	        } else file.value="";//for FF,Chrome,Safari
-	    } else {*/	
-	    	$('#fileForms').form('submit',{
-				success : function(data) {
-					reloadListAction();
-
-					$("#jfile").val("");
-				}
-			});	 
-	    //}
+function excelChange(){ 
+	$('#fileForms').form('submit',{
+		success : function(data) {
+			$.messager.alert("系统提示","<span style='color:black'>发帖成功~</span>","info");
+			m_publishInfo_dlg.close();
+			window.location.href="/casebbs/caseBBS/gotoIndex.do?userName="+m_userName;
+		}
+	});	  
 }

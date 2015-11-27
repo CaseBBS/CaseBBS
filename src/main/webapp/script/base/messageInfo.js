@@ -35,7 +35,7 @@ var MessageManage = {
 					 $("#h_title").html("标题："+req.data.title);
 					 $("#h_title1").html("标题："+req.data.title);
 					 $("#h_creator").html("作者：    "+req.data.creatorName);
-					 if(req.data.creatorName==m_userName||m_userName == 'admin'){
+					 if(req.data.creatorName==m_userName||m_userName == 'xzj001'){
 							$("#div_uploadAttch").removeAttr("style");
 					 } 
 					 $("#h_createTime").html("发表时间："+req.data.createTime);
@@ -99,7 +99,7 @@ var MessageManage = {
 			            	  return "<span style='color:black'>"+value+"</span>";
 			              }},
 			              { title : '操作',   field : 'operation', align : 'center', width : 100,formatter:function(value,rowData,index){
-		            		  return "<a href='javascript:void(0)' style='color:blue;text-decoration: none;' onclick=MessageManage.downLoadItem('"+rowData.attchUrl+"') >下载</a>";
+		            		  return "<a style='color:blue;text-decoration: none;' onclick=MessageManage.downLoadItem('"+rowData.attchUrl+"') >下载</a>";
 			              }}
 			          ] ]
 		});
@@ -132,7 +132,7 @@ var MessageManage = {
 			            	  return "<span style='color:black'>"+value+"</span>";
 			              }},
 			              { title : '操作',   field : 'operation', align : 'center', width : 100,formatter:function(value,rowData,index){
-		            		  return "<a href='javascript:void(0)' style='color:blue;text-decoration: none;' onclick=MessageManage.downLoadItem('"+rowData.attchUrl+"') >下载</a>";
+		            		  return "<a style='color:blue;text-decoration: none;' onclick=MessageManage.downLoadItem('"+rowData.attchUrl+"') >下载</a>";
 			              }}
 			          ] ]
 		});
@@ -144,10 +144,12 @@ var MessageManage = {
 		 $("#itemAttchGrid").datagrid("unselectRow", index); 
 	},
 	backToCalendar:function(){ 
-		window.location.href="/casebbs/caseBBS/gotoIndex.do?date="+m_dates+"&userName="+m_userName+"&userMark="+m_userMark;
+		window.navigate("/casebbs/caseBBS/gotoIndex.do?date="+m_dates+"&userName="+m_userName+"&userMark="+m_userMark);
+		//window.location.href="/casebbs/caseBBS/gotoIndex.do?date="+m_dates+"&userName="+m_userName+"&userMark="+m_userMark;
 	},
 	backToMessageList:function(){
-		window.location.href="/casebbs/caseBBS/gotoArticleList.do?date="+m_dates+"&userName="+m_userName+"&userMark="+m_userMark;
+		window.navigate("/casebbs/caseBBS/gotoArticleList.do?date="+m_dates+"&userName="+m_userName+"&userMark="+m_userMark);
+		//window.location.href="/casebbs/caseBBS/gotoArticleList.do?date="+m_dates+"&userName="+m_userName+"&userMark="+m_userMark;
 	},
 	feedMessage:function(){
 		$("#feedContent").val("");
@@ -196,7 +198,9 @@ var MessageManage = {
 			async : true,
 			success : function(req) {
 				if (req.isSuccess) { 
-					$.messager.alert("系统提示","<span style='color:black'>回复成功</span>","info"); 
+					$.messager.alert("系统提示","<span style='color:black'>回复成功</span>","info",function(){
+						excelItemChange();
+					}); 
 					var html = "";
 					html += '<tr style="height:45px">';
 					html += '<td style="width:80px;text-align:right;font-size:12px;">';
@@ -221,40 +225,19 @@ function reloadListAction(){
 	var msgId = $("#messageid").val();
 	$('#attchMentsGrid').datagrid("reload",{"id":msgId});
 }
-function excelChange(file){
-	  /*if(!(/(?:xls)$/i.test(file.value))) {
-	        $.messager.alert('错误', "只允许上传xls的文档", 'error'); 
-	        if(window.ActiveXObject) {//for IE
-	            file.select();//select the file ,and clear selection
-	            document.selection.clear();
-	        } else if(window.opera) {//for opera
-	            file.type="text";file.type="file";
-	        } else file.value="";//for FF,Chrome,Safari
-	    } else {*/	
-	    	$('#fileForms').form('submit',{
-				success : function(data) {
-					reloadListAction();
-					$("#jfile").val("");
-				}
-			});	 
-	    //}
+function excelChange(file){ 
+    	$('#fileForms').form('submit',{
+			success : function(data) {
+				reloadListAction(); 
+			}
+		});	  
 }
-function excelItemChange(file){
-	  /*if(!(/(?:xls)$/i.test(file.value))) {
-	        $.messager.alert('错误', "只允许上传xls的文档", 'error'); 
-	        if(window.ActiveXObject) {//for IE
-	            file.select();//select the file ,and clear selection
-	            document.selection.clear();
-	        } else if(window.opera) {//for opera
-	            file.type="text";file.type="file";
-	        } else file.value="";//for FF,Chrome,Safari
-	    } else {*/	
-	    	$('#itemfileForms').form('submit',{
-				success : function(data) {
-					reloadItemAttchAction(); 
-				}
-			});	 
-	    //}
+function excelItemChange(){ 
+	$('#itemfileForms').form('submit',{
+		success : function(data) {
+			reloadItemAttchAction(); 
+		}
+	});	  
 }
 function reloadItemAttchAction(){
 	var msgId = $("#itemmessageid").val();

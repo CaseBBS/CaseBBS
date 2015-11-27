@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.casebbs.core.ListResult;
 import com.casebbs.dao.ArticleAttchsMapper;
 import com.casebbs.dao.ArticleItemAttchsMapper;
@@ -58,13 +60,16 @@ public class CaseBBSServiceImpl  implements CaseBBSService {
 		// TODO Auto-generated method stub
 		articleMapper.updateByPrimaryKey(record);
 	}
+	@Transactional
 	public List<ArticleAttchs> loadMessageAttchsById(Integer id) {
 		// TODO Auto-generated method stub
 		return articleAttchsMapper.loadMessageAttchsById(id);
 	}
-	public void insertAttchMents(ArticleAttchs attch) {
+	public void insertAttchMents(List<ArticleAttchs> list) {
 		// TODO Auto-generated method stub
-		articleAttchsMapper.insert(attch);
+		for(ArticleAttchs attch : list ){
+			articleAttchsMapper.insert(attch);
+		} 
 	}
 	public void deleteAttchById(Integer id) {
 		// TODO Auto-generated method stub
@@ -76,8 +81,11 @@ public class CaseBBSServiceImpl  implements CaseBBSService {
 		return articleItemAttchsMapper.loadMessageItemAttchsById(id);
 	}
 	@Override
-	public void insertItemAttchMents(ArticleItemAttchs attch) {
+	@Transactional
+	public void insertItemAttchMents(List<ArticleItemAttchs> list) {
 		// TODO Auto-generated method stub
-		articleItemAttchsMapper.insert(attch);
+		for(ArticleItemAttchs attch : list ){
+			articleItemAttchsMapper.insert(attch);
+		}  
 	}
 }

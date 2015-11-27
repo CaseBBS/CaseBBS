@@ -40,7 +40,7 @@
 	            	<div class="dateBoxMainTItleTxtDIv">
 	            		<img src="<%=basePath %>resource/calendarImage/newmessage.png"  height="30px" onclick="publishNewMessage()" />
 	            		<input id="sch_name" type="text" style="height:35px" /> 
-	            		<a id="btnSearch" href="javascript:void(0);" onclick="searchAction()" class="easyui-linkbutton" iconcls="icon-search" plain="true">查询</a>
+	            		<a id="btnSearch" onclick="searchAction()" class="easyui-linkbutton" iconcls="icon-search" plain="true">查询</a>
 	            			            		<!-- 
 	                    <a href="javascript:void(0);" onclick="clearAlldutyData()"><img src="<%=basePath %>dutydata/dutyprepare/calendarImage/canelpast.png" alt="清除当月所有报备数据" title="清除当月所有报备数据" /></a>
 	                    <a href="javascript:void(0);" onclick="clearClipbord()"><img src="<%=basePath %>dutydata/dutyprepare/calendarImage/past.png" alt="取消剪贴板数据" title="取消剪贴板数据"  /></a>
@@ -72,9 +72,9 @@
 	</div> 
 	<div style="display:none"> 
 		<div id="div_newMessage" style="width:100%;height:100%">
-					<table id="newmessageInfo" width="900px" height="300px" cellspacing="0">
+					<table id="newmessageInfo" width="900px" height="300px" cellspacing="0" border="0">
 						<tr>
-							<td style="width:80px;text-align:right;border:1px solid black;color:white;background:#555"> 
+							<td style="width:80px;text-align:right;"> 
 							<input type="hidden" id="msgId" />
 								<label style="font-size:20px;font-weight:bold">标题：</label>
 							</td>
@@ -83,21 +83,21 @@
 							</td>
 						</tr>
 						<tr>
-							<td style="width:80px;text-align:right;border:1px solid black;color:white;background:#555">
+							<td style="width:80px;text-align:right;">
 								<label style="font-size:20px;font-weight:bold">类型：</label>
 							</td>
 							<td style="width:200px">
 								<input id="txtarticalType"  style="width:204px" class="easyui-combobox"  data-options="valueField:'id',editable:false,textField:'name',data:[{id: 1,name: '盗抢机动车'},{id: 2,name: '盗窃车内物品'},{id: 3,name: '入室盗窃'},{id: 4,name: '抢夺、抢劫'},{id: 5,name: '诈骗'},{id: 6,name: '故障报送'},{id: 7,name: '工作需求'}]" />
 							</td>
 							<td style="width:100px;text-align:right;">
-								<label style="font-size:20px;font-weight:bold">标注：</label> <span style="color:red;font-size:10px;">*勾选后发帖标题显著提示</span>
+								<label style="font-size:20px;font-weight:bold">标注：</label>
 							</td>
 							<td style="text-align:left">
-								<input id="txisHost" type="checkbox"  onclick="onCheckShop();"  />
+								<input id="txisHost" type="checkbox"  onclick="onCheckShop();"  /> <span style="color:red;font-size:10px;">*勾选后发帖标题显示新标签提示</span>
 							</td>
 						</tr>
 						<tr>
-							<td style="width:80px;text-align:right;border:1px solid black;color:white;background:#555"> 
+							<td style="width:80px;text-align:right;"> 
 								<label style="font-size:20px;font-weight:bold">内容：</label>
 							</td>
 							<td colspan="3">
@@ -105,31 +105,43 @@
 							</td>
 						</tr>
 						<tr>
-							<td style="width:80px;text-align:right;border:1px solid black;color:white;background:#555">
+							<td style="width:80px;text-align:right;">
 								<label style="font-size:20px;font-weight:bold">备注：</label>
 							</td>
 							<td colspan="3">
 								<textarea id="txtdescription" style="width:100%" rows="2"></textarea>
 							</td>
 						</tr>
-					</table> 
-					<div id="attchMentsGrid" style="padding:10px; width:900px;heigth:100%">
-					
-					</div>
-   		 </div>
-   	</div>
-   	<div style="display:none">
-   		<div id="attch_toolbar">
+					</table>  
+   	<div> 
    			<p  style="height:30px;margin-top:15px">
-   				<span>上传附件
+   				<span style="font-size:20px;font-weight:bold">上传附件
+				</span>
+				<div style="width:100%;margin-left:50px;">
 	   				<form id="fileForms" name="fileForms" action="fileUpload/uploadAttch.do"  enctype="multipart/form-data" method="post" style="margin:0;padding:0;">
 					       	<input type="hidden" name="messageid" id="messageid" />
-					       	<input type="file" name="file" id="jfile"  onChange="excelChange(this);">
+					       	<p>
+					       		<input type="file" style="width:300px" name="file1" />
+				       		</p>
+					       	<p>
+					       	<input type="file" style="width:300px"  name="file2" /> 
+				       		</p>
+					       	<p>
+					       	<input type="file"  style="width:300px" name="file3" /> 
+				       		</p>
+					       	<p>
+					       	<input type="file"  style="width:300px" name="file4" />
+					       	</p>
+				       		<p>
+					       	<input type="file"  style="width:300px" name="file5" />
+				       		</p>
 					</form>
-				</span>
+				</div>
    				<!-- <input type="text" class="easyui-validatebox" readonly="readonly" id="txtfilename"><a id="btnfindFile"  href="javascript:void(0);" class="easyui-linkbutton"  iconcls="icon-add"   >选择文件</a><span style="font-size:10px;color:red;margin-left:5px">*请先保存发帖内容再上传附件</span> -->
    			</p>
    		</div>
+   	</div>
+   		 </div>
    	</div>
   </body>
 </html>

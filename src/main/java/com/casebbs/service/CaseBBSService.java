@@ -26,12 +26,12 @@ public interface CaseBBSService {
 
 	List<ArticleAttchs> loadMessageAttchsById(Integer id);
 
-	void insertAttchMents(ArticleAttchs attch);
+	void insertAttchMents(List<ArticleAttchs> list);
 
 	void deleteAttchById(Integer id);
 
 	List<ArticleItemAttchs> loadMessageItemAttchsById(Integer id);
 
-	void insertItemAttchMents(ArticleItemAttchs attch);
+	void insertItemAttchMents(List<ArticleItemAttchs> list);
 
 }

@@ -3,7 +3,9 @@ package com.casebbs.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,58 +39,213 @@ public class FileUpLoadController extends CommonsMultipartResolver {
 		public String uploadDeviceExcelFile(
 				HttpServletRequest request, HttpServletResponse response,
 				@RequestParam(value = "messageid", required = true) Integer id,
-				@RequestParam(value = "file", required = false) MultipartFile file) {
+				@RequestParam(value = "file1", required = false) MultipartFile file1,
+				@RequestParam(value = "file2", required = false) MultipartFile file2,
+				@RequestParam(value = "file3", required = false) MultipartFile file3,
+				@RequestParam(value = "file4", required = false) MultipartFile file4,
+				@RequestParam(value = "file5", required = false) MultipartFile file5) {
 			try {
 				String path = request.getSession().getServletContext()
 						.getRealPath("uploadFile/Attchfile/");
-				String fileName = file.getOriginalFilename();
+				List<ArticleAttchs> list = new ArrayList<ArticleAttchs>();
+				String fileName1 ="";
+				String fileName2 ="";
+				String fileName3 ="";
+				String fileName4 ="";
+				String fileName5 ="";
 				path += "/"+id;
-				String[] types = fileName.split("\\.");
-				String attchType = "";
-				if(types[1].equals("png")||types[1].equals("jpg")||types[1].equals("jpeg")||types[1].equals("gif")||types[1].equals("ico")||types[1].equals("bmp")){
-					attchType = "图片文件"; 
-				}else if(types[1].equals("doc")||types[1].equals("docx")){
-					attchType = "文档文件"; 
-				}else if(types[1].equals("ppt")||types[1].equals("pptx")){
-					attchType = "演示文件"; 
-				}else if(types[1].equals("xls")||types[1].equals("xlsx")){
-					attchType = "Excel文件"; 
-				}else if(types[1].equals("txt")){
-					attchType = "文本文件"; 
-				}else{
-					attchType = "一般文件"; 
-				}
-				
-				String filepath = "uploadFile/Attchfile/"+id+"/"+fileName;
-				File targetFile = new File(path, fileName);
-				if (!targetFile.exists()) {
-					targetFile.mkdirs();
-				}
-				//path = path+"/"+fileName;
-				//File targetFiles = new File(path, fileName);
-				// 保存
-				try {
-					File f = new File(targetFile.getPath());
-					if (f.exists()) {
-						f.delete();
+				if(file1!=null&&file1.getSize()>0){
+					fileName1 = file1.getOriginalFilename();
+					String[] types = fileName1.split("\\.");
+					String attchType1 = "";
+					if(types[1].equals("png")||types[1].equals("jpg")||types[1].equals("jpeg")||types[1].equals("gif")||types[1].equals("ico")||types[1].equals("bmp")){
+						attchType1 = "图片文件"; 
+					}else if(types[1].equals("doc")||types[1].equals("docx")){
+						attchType1 = "文档文件"; 
+					}else if(types[1].equals("ppt")||types[1].equals("pptx")){
+						attchType1 = "演示文件"; 
+					}else if(types[1].equals("xls")||types[1].equals("xlsx")){
+						attchType1 = "Excel文件"; 
+					}else if(types[1].equals("txt")){
+						attchType1 = "文本文件"; 
+					}else{
+						attchType1 = "一般文件"; 
 					}
-					file.transferTo(targetFile);
-					InputStream stream = new FileInputStream(targetFile.getPath());
-					// stream.close();
-					stream.close();
-					//int count = insertListToDatabase(list);
-					ArticleAttchs attch = new ArticleAttchs();
-					attch.setId(0);
-					attch.setArticleId(id);
-					attch.setAttchType(attchType);
-					attch.setAttchUrl(filepath);
-					attch.setName(fileName);
-					attch.setUploadTime(new Date());
-					caseBBSService.insertAttchMents(attch);
 					
-					 
-				} catch (Exception e) {
-					e.printStackTrace();
+					String filepath1 = "uploadFile/Attchfile/"+id+"/"+fileName1;
+					File targetFile = new File(path, fileName1);
+					if (!targetFile.exists()) {
+						targetFile.mkdirs();
+					}
+					try { 
+						file1.transferTo(targetFile);
+						
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					ArticleAttchs attch1 = new ArticleAttchs();
+					attch1.setId(0);
+					attch1.setArticleId(id);
+					attch1.setAttchType(attchType1);
+					attch1.setAttchUrl(filepath1);
+					attch1.setName(fileName1);
+					attch1.setUploadTime(new Date());
+					list.add(attch1);
+				}
+				if(file2!=null&&file2.getSize()>0){
+					fileName2 = file2.getOriginalFilename();
+					String[] types = fileName2.split("\\.");
+					String attchType1 = "";
+					if(types[1].equals("png")||types[1].equals("jpg")||types[1].equals("jpeg")||types[1].equals("gif")||types[1].equals("ico")||types[1].equals("bmp")){
+						attchType1 = "图片文件"; 
+					}else if(types[1].equals("doc")||types[1].equals("docx")){
+						attchType1 = "文档文件"; 
+					}else if(types[1].equals("ppt")||types[1].equals("pptx")){
+						attchType1 = "演示文件"; 
+					}else if(types[1].equals("xls")||types[1].equals("xlsx")){
+						attchType1 = "Excel文件"; 
+					}else if(types[1].equals("txt")){
+						attchType1 = "文本文件"; 
+					}else{
+						attchType1 = "一般文件"; 
+					}
+					
+					String filepath1 = "uploadFile/Attchfile/"+id+"/"+fileName2;
+					File targetFile = new File(path, fileName2);
+					if (!targetFile.exists()) {
+						targetFile.mkdirs();
+					}
+					try { 
+						file2.transferTo(targetFile);
+						
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					ArticleAttchs attch2 = new ArticleAttchs();
+					attch2.setId(0);
+					attch2.setArticleId(id);
+					attch2.setAttchType(attchType1);
+					attch2.setAttchUrl(filepath1);
+					attch2.setName(fileName2);
+					attch2.setUploadTime(new Date());
+					list.add(attch2);
+				}
+				if(file3!=null&&file3.getSize()>0){
+					fileName3 = file3.getOriginalFilename();
+					String[] types = fileName3.split("\\.");
+					String attchType1 = "";
+					if(types[1].equals("png")||types[1].equals("jpg")||types[1].equals("jpeg")||types[1].equals("gif")||types[1].equals("ico")||types[1].equals("bmp")){
+						attchType1 = "图片文件"; 
+					}else if(types[1].equals("doc")||types[1].equals("docx")){
+						attchType1 = "文档文件"; 
+					}else if(types[1].equals("ppt")||types[1].equals("pptx")){
+						attchType1 = "演示文件"; 
+					}else if(types[1].equals("xls")||types[1].equals("xlsx")){
+						attchType1 = "Excel文件"; 
+					}else if(types[1].equals("txt")){
+						attchType1 = "文本文件"; 
+					}else{
+						attchType1 = "一般文件"; 
+					}
+					
+					String filepath1 = "uploadFile/Attchfile/"+id+"/"+fileName3;
+					File targetFile = new File(path, fileName3);
+					if (!targetFile.exists()) {
+						targetFile.mkdirs();
+					}
+					try { 
+						file3.transferTo(targetFile);
+						
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					ArticleAttchs attch3 = new ArticleAttchs();
+					attch3.setId(0);
+					attch3.setArticleId(id);
+					attch3.setAttchType(attchType1);
+					attch3.setAttchUrl(filepath1);
+					attch3.setName(fileName3);
+					attch3.setUploadTime(new Date());
+					list.add(attch3);
+				}
+				if(file4!=null&&file4.getSize()>0){
+					fileName4 = file4.getOriginalFilename();
+					String[] types = fileName4.split("\\."); 
+					String attchType1 = "";
+					if(types[1].equals("png")||types[1].equals("jpg")||types[1].equals("jpeg")||types[1].equals("gif")||types[1].equals("ico")||types[1].equals("bmp")){
+						attchType1 = "图片文件"; 
+					}else if(types[1].equals("doc")||types[1].equals("docx")){
+						attchType1 = "文档文件"; 
+					}else if(types[1].equals("ppt")||types[1].equals("pptx")){
+						attchType1 = "演示文件"; 
+					}else if(types[1].equals("xls")||types[1].equals("xlsx")){
+						attchType1 = "Excel文件"; 
+					}else if(types[1].equals("txt")){
+						attchType1 = "文本文件"; 
+					}else{
+						attchType1 = "一般文件"; 
+					}
+					
+					String filepath1 = "uploadFile/Attchfile/"+id+"/"+fileName4;
+					File targetFile = new File(path, fileName4);
+					if (!targetFile.exists()) {
+						targetFile.mkdirs();
+					}
+					try { 
+						file4.transferTo(targetFile);
+						
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					ArticleAttchs attch4 = new ArticleAttchs();
+					attch4.setId(0);
+					attch4.setArticleId(id);
+					attch4.setAttchType(attchType1);
+					attch4.setAttchUrl(filepath1);
+					attch4.setName(fileName4);
+					attch4.setUploadTime(new Date());
+					list.add(attch4);
+				}
+				if(file5!=null&&file5.getSize()>0){
+					fileName5 = file5.getOriginalFilename();
+					String[] types = fileName5.split("\\."); 
+					String attchType1 = "";
+					if(types[1].equals("png")||types[1].equals("jpg")||types[1].equals("jpeg")||types[1].equals("gif")||types[1].equals("ico")||types[1].equals("bmp")){
+						attchType1 = "图片文件"; 
+					}else if(types[1].equals("doc")||types[1].equals("docx")){
+						attchType1 = "文档文件"; 
+					}else if(types[1].equals("ppt")||types[1].equals("pptx")){
+						attchType1 = "演示文件"; 
+					}else if(types[1].equals("xls")||types[1].equals("xlsx")){
+						attchType1 = "Excel文件"; 
+					}else if(types[1].equals("txt")){
+						attchType1 = "文本文件"; 
+					}else{
+						attchType1 = "一般文件"; 
+					}
+					
+					String filepath1 = "uploadFile/Attchfile/"+id+"/"+fileName5;
+					File targetFile = new File(path, fileName5);
+					if (!targetFile.exists()) {
+						targetFile.mkdirs();
+					}
+					try { 
+						file5.transferTo(targetFile);
+						
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					ArticleAttchs attch5 = new ArticleAttchs();
+					attch5.setId(0);
+					attch5.setArticleId(id);
+					attch5.setAttchType(attchType1);
+					attch5.setAttchUrl(filepath1);
+					attch5.setName(fileName5);
+					attch5.setUploadTime(new Date());
+					list.add(attch5);
+				} 
+				if(list.size()>0){
+					caseBBSService.insertAttchMents(list);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -104,60 +261,139 @@ public class FileUpLoadController extends CommonsMultipartResolver {
 					HttpServletRequest request, HttpServletResponse response,
 					@RequestParam(value = "itemmessageid", required = true) Integer id,
 					@RequestParam(value = "itemCreator", required = true) String itemCreator,
-					@RequestParam(value = "itemfile", required = false) MultipartFile file) {
+					@RequestParam(value = "itemfile1", required = false) MultipartFile file1,
+					@RequestParam(value = "itemfile2", required = false) MultipartFile file2,
+					@RequestParam(value = "itemfile3", required = false) MultipartFile file3 ) {
 				try {
 					String path = request.getSession().getServletContext()
-							.getRealPath("uploadFile/ItemAttchfile/");
-					String fileName = file.getOriginalFilename();
+							.getRealPath("uploadFile/ItemAttchfile/"); 
+					List<ArticleItemAttchs> list = new ArrayList<ArticleItemAttchs>();
+					String fileName1 ="";
+					String fileName2 ="";
+					String fileName3 ="";
+					String fileName4 ="";
+					String fileName5 ="";
 					path += "/"+id;
-					String[] types = fileName.split("\\.");
-					String attchType = "";
-					if(types[1].equals("png")||types[1].equals("jpg")||types[1].equals("jpeg")||types[1].equals("gif")||types[1].equals("ico")||types[1].equals("bmp")){
-						attchType = "图片文件"; 
-					}else if(types[1].equals("doc")||types[1].equals("docx")){
-						attchType = "文档文件"; 
-					}else if(types[1].equals("ppt")||types[1].equals("pptx")){
-						attchType = "演示文件"; 
-					}else if(types[1].equals("xls")||types[1].equals("xlsx")){
-						attchType = "Excel文件"; 
-					}else if(types[1].equals("txt")){
-						attchType = "文本文件"; 
-					}else{
-						attchType = "一般文件"; 
+					if(file1!=null&&file1.getSize()>0){
+						fileName1 = file1.getOriginalFilename();
+						String[] types = fileName1.split("\\.");
+						String attchType1 = "";
+						if(types[1].equals("png")||types[1].equals("jpg")||types[1].equals("jpeg")||types[1].equals("gif")||types[1].equals("ico")||types[1].equals("bmp")){
+							attchType1 = "图片文件"; 
+						}else if(types[1].equals("doc")||types[1].equals("docx")){
+							attchType1 = "文档文件"; 
+						}else if(types[1].equals("ppt")||types[1].equals("pptx")){
+							attchType1 = "演示文件"; 
+						}else if(types[1].equals("xls")||types[1].equals("xlsx")){
+							attchType1 = "Excel文件"; 
+						}else if(types[1].equals("txt")){
+							attchType1 = "文本文件"; 
+						}else{
+							attchType1 = "一般文件"; 
+						}
+						
+						String filepath1 = "uploadFile/ItemAttchfile/"+id+"/"+fileName1;
+						File targetFile = new File(path, fileName1);
+						if (!targetFile.exists()) {
+							targetFile.mkdirs();
+						}
+						try { 
+							file1.transferTo(targetFile);
+							
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						ArticleItemAttchs attch1 = new ArticleItemAttchs();
+						attch1.setId(0);
+						attch1.setArticlaId(id);
+						attch1.setAttchType(attchType1);
+						attch1.setAttchUrl(filepath1);
+						attch1.setName(fileName1);
+						attch1.setCreateTime(new Date());
+						attch1.setCreator(itemCreator);
+						list.add(attch1);
+					}
+					if(file2!=null&&file2.getSize()>0){
+						fileName2 = file2.getOriginalFilename();
+						String[] types = fileName2.split("\\.");
+						String attchType1 = "";
+						if(types[1].equals("png")||types[1].equals("jpg")||types[1].equals("jpeg")||types[1].equals("gif")||types[1].equals("ico")||types[1].equals("bmp")){
+							attchType1 = "图片文件"; 
+						}else if(types[1].equals("doc")||types[1].equals("docx")){
+							attchType1 = "文档文件"; 
+						}else if(types[1].equals("ppt")||types[1].equals("pptx")){
+							attchType1 = "演示文件"; 
+						}else if(types[1].equals("xls")||types[1].equals("xlsx")){
+							attchType1 = "Excel文件"; 
+						}else if(types[1].equals("txt")){
+							attchType1 = "文本文件"; 
+						}else{
+							attchType1 = "一般文件"; 
+						}
+						
+						String filepath1 = "uploadFile/ItemAttchfile/"+id+"/"+fileName2;
+						File targetFile = new File(path, fileName2);
+						if (!targetFile.exists()) {
+							targetFile.mkdirs();
+						}
+						try { 
+							file2.transferTo(targetFile);
+							
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						ArticleItemAttchs attch1 = new ArticleItemAttchs();
+						attch1.setId(0);
+						attch1.setArticlaId(id);
+						attch1.setAttchType(attchType1);
+						attch1.setAttchUrl(filepath1);
+						attch1.setName(fileName2);
+						attch1.setCreateTime(new Date());
+						attch1.setCreator(itemCreator);
+						list.add(attch1);
+					}
+					if(file3!=null&&file3.getSize()>0){
+						fileName3 = file3.getOriginalFilename();
+						String[] types = fileName3.split("\\.");
+						String attchType1 = "";
+						if(types[1].equals("png")||types[1].equals("jpg")||types[1].equals("jpeg")||types[1].equals("gif")||types[1].equals("ico")||types[1].equals("bmp")){
+							attchType1 = "图片文件"; 
+						}else if(types[1].equals("doc")||types[1].equals("docx")){
+							attchType1 = "文档文件"; 
+						}else if(types[1].equals("ppt")||types[1].equals("pptx")){
+							attchType1 = "演示文件"; 
+						}else if(types[1].equals("xls")||types[1].equals("xlsx")){
+							attchType1 = "Excel文件"; 
+						}else if(types[1].equals("txt")){
+							attchType1 = "文本文件"; 
+						}else{
+							attchType1 = "一般文件"; 
+						}
+						
+						String filepath1 = "uploadFile/ItemAttchfile/"+id+"/"+fileName3;
+						File targetFile = new File(path, fileName3);
+						if (!targetFile.exists()) {
+							targetFile.mkdirs();
+						}
+						try { 
+							file3.transferTo(targetFile);
+							
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						ArticleItemAttchs attch1 = new ArticleItemAttchs();
+						attch1.setId(0);
+						attch1.setArticlaId(id);
+						attch1.setAttchType(attchType1);
+						attch1.setAttchUrl(filepath1);
+						attch1.setName(fileName3);
+						attch1.setCreateTime(new Date());
+						attch1.setCreator(itemCreator);
+						list.add(attch1);
 					}
 					
-					String filepath = "uploadFile/ItemAttchfile/"+id+"/"+fileName;
-					File targetFile = new File(path, fileName);
-					if (!targetFile.exists()) {
-						targetFile.mkdirs();
-					}
-					//path = path+"/"+fileName;
-					//File targetFiles = new File(path, fileName);
-					// 保存
-					try {
-						File f = new File(targetFile.getPath());
-						if (f.exists()) {
-							f.delete();
-						}
-						file.transferTo(targetFile);
-						InputStream stream = new FileInputStream(targetFile.getPath());
-						// stream.close();
-						stream.close();
-						//int count = insertListToDatabase(list);
-						ArticleItemAttchs attch = new ArticleItemAttchs();
-						attch.setId(0);
-						attch.setArticlaId(id);
-						attch.setAttchType(attchType);
-						attch.setAttchUrl(filepath);
-						attch.setName(fileName);
-						attch.setCreateTime(new Date());
-						attch.setCreator(itemCreator);
-						
-						caseBBSService.insertItemAttchMents(attch);
-						
-						 
-					} catch (Exception e) {
-						e.printStackTrace();
+					if(list.size()>0){
+						caseBBSService.insertItemAttchMents(list);
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -257,7 +493,7 @@ public class FileUpLoadController extends CommonsMultipartResolver {
 				attch.setAttchUrl(filePath);
 				attch.setName(name);
 				attch.setUploadTime(new Date());
-				caseBBSService.insertAttchMents(attch);
+				//caseBBSService.insertAttchMents(attch);
 			}
 			return result;
 		} catch (Exception ex) {

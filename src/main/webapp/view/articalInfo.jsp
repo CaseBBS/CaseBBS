@@ -16,7 +16,7 @@
   	 		<div class="easyui-layout" data-options="fit:true">
   	 			<div data-options="region:'north',split:false,border:true" style="height:100px">
   	 				<h2 id="h_title" style="color:black"></h2>
-  	 				<a onclick='MessageManage.backToMessageList()' style="float:right;width:80px;line-height:3;color:black;text-decoration: none;" href="javascript:void(0);">返回列表</a><a onclick='MessageManage.backToCalendar()'  href="javascript:void(0);" style="float:right;width:80px;line-height:3;color:black;text-decoration: none;">返回首页</a>
+  	 				<a onclick='MessageManage.backToMessageList()' style="float:right;width:80px;line-height:3;color:black;text-decoration: none;" >返回列表</a><a onclick='MessageManage.backToCalendar()'  style="float:right;width:80px;line-height:3;color:black;text-decoration: none;">返回首页</a>
   	 				<h3 id="h_creator" style="float:left;width:250px;color:black"></h3><h3 id="h_createTime" style="float:left;color:black"></h3>
   	 				<img src="<%=basePath %>resource/calendarImage/feed.png" style="float:right;margin-right:30px"  height="30px" onclick="MessageManage.feedMessage();" /> 
   	 			</div>
@@ -42,7 +42,7 @@
 								<span  style="color:black;float:right;padding:5px;">补充上传附件
 					   				<form id="fileForms" name="fileForms" action="fileUpload/uploadAttch.do"  enctype="multipart/form-data" method="post" style="margin:0;padding:0;">
 									       	<input type="hidden" name="messageid" id="messageid" />
-									       	<input type="file" name="file" id="jfile"  onChange="excelChange(this);">
+									       	<input type="file" name="file1" id=""  onChange="excelChange(this);">
 									</form>
 								</span>
 							</div>
@@ -68,13 +68,15 @@
    				</tr> 
    				<tr>
    					<td style="width:75px">
-   						<label>上传附件:</label>
+   						<label style="font-size:20px;font-weight:bold">上传附件:</label>
    					</td>
    					<td> 
 			   				<form id="itemfileForms" name="itemfileForms" action="fileUpload/uploadItemAttch.do"  enctype="multipart/form-data" method="post" style="margin:0;padding:0;">
 							       	<input type="hidden" name="itemmessageid" id="itemmessageid" />
 									<input type="hidden" name="itemCreator" id="itemCreator" />
-							       	<input type="file" name="itemfile" id="itemfile"  onChange="excelItemChange(this);">
+							       	<input type="file" name="itemfile1" style="width:300px" />
+							       	<input type="file" name="itemfile2" style="width:300px" />
+							       	<input type="file" name="itemfile3" style="width:300px" /> 
 							</form> 
    					</td>
    				</tr> 

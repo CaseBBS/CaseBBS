@@ -67,7 +67,7 @@ var MessageManage = {
 				columns : [ [ 
 				              { title : 'id', field : 'id', hidden : true },
 				              { title : '标题', field : 'title', align : 'left', width : 200,formatter:function(value,rowData,index){
-				            	  var html =  "<a href='javascript:void(0)' style='color:black;text-decoration: none;' onclick='MessageManage.clickAction("+rowData.id+")'>"+value+"</a>";
+				            	  var html =  "<a style='color:black;text-decoration: none;' onclick='MessageManage.clickAction("+rowData.id+")'>"+value+"</a>";
 				            	  if(rowData.ishost){
 				            		  html+="<img src='resource/calendarImage/new2.png' />";
 				            	  }
@@ -84,7 +84,7 @@ var MessageManage = {
 				            	  if(rowData.ishost){
 				            		  htmls += "<a onclick='MessageManage.changeMessageStatus("+rowData.id+",4)' href='javascript:void(0)'  style='color:blue;text-decoration: none;margin-right:15px' >取消置顶</a>";
 				            	  }
-				            	  htmls += "<a href='javascript:void(0)' style='color:red;text-decoration: none;' onclick='MessageManage.deleteMessage("+rowData.id+",4)' >删除</a>";
+				            	  htmls += "<a style='color:red;text-decoration: none;' onclick='MessageManage.deleteMessage("+rowData.id+",4)' >删除</a>";
 			            		  return htmls;
 				              },hidden: isdelete}
 				          ] ]
@@ -107,7 +107,7 @@ var MessageManage = {
 				columns : [ [ 
 				              { title : 'id', field : 'id', hidden : true },
 				              { title : '标题', field : 'title', align : 'left', width : 200,formatter:function(value,rowData,index){
-				            	  var html =  "<a href='javascript:void(0)' style='color:black;text-decoration: none;' onclick='MessageManage.clickAction("+rowData.id+")'>"+value+"</a>";
+				            	  var html =  "<a style='color:black;text-decoration: none;' onclick='MessageManage.clickAction("+rowData.id+")'>"+value+"</a>";
 				            	  if(rowData.ishost){
 				            		  html+="<img src='resource/calendarImage/new2.png' />";
 				            	  }
@@ -124,7 +124,7 @@ var MessageManage = {
 				            	  if(rowData.ishost){
 				            		  htmls += "<a onclick='MessageManage.changeMessageStatus("+rowData.id+",1)' href='javascript:void(0)'  style='color:blue;text-decoration: none;margin-right:15px' >取消置顶</a>";
 				            	  }
-				            	  htmls += "<a href='javascript:void(0)' style='color:red;text-decoration: none;' onclick='MessageManage.deleteMessage("+rowData.id+",1)' >删除</a>";
+				            	  htmls += "<a style='color:red;text-decoration: none;' onclick='MessageManage.deleteMessage("+rowData.id+",1)' >删除</a>";
 			            		  return htmls;
 				              },hidden: isdelete}
 				          ] ]
@@ -147,7 +147,7 @@ var MessageManage = {
 				columns : [ [ 
 				              { title : 'id', field : 'id', hidden : true },
 				              { title : '标题', field : 'title', align : 'left', width : 200,formatter:function(value,rowData,index){
-				            	  var html =  "<a href='javascript:void(0)' style='color:black;text-decoration: none;' onclick='MessageManage.clickAction("+rowData.id+")'>"+value+"</a>";
+				            	  var html =  "<a style='color:black;text-decoration: none;' onclick='MessageManage.clickAction("+rowData.id+")'>"+value+"</a>";
 				            	  if(rowData.ishost){
 				            		  html+="<img src='resource/calendarImage/new2.png' />";
 				            	  }
@@ -164,7 +164,7 @@ var MessageManage = {
 				            	  if(rowData.ishost){
 				            		  htmls += "<a onclick='MessageManage.changeMessageStatus("+rowData.id+",2)' href='javascript:void(0)'  style='color:blue;text-decoration: none;margin-right:15px' >取消置顶</a>";
 				            	  }
-				            	  htmls += "<a href='javascript:void(0)' style='color:red;text-decoration: none;' onclick='MessageManage.deleteMessage("+rowData.id+",2)' >删除</a>";
+				            	  htmls += "<a style='color:red;text-decoration: none;' onclick='MessageManage.deleteMessage("+rowData.id+",2)' >删除</a>";
 			            		  return htmls;
 				              },hidden: isdelete}
 				          ] ]
@@ -204,7 +204,7 @@ var MessageManage = {
 				            	  if(rowData.ishost){
 				            		  htmls += "<a onclick='MessageManage.changeMessageStatus("+rowData.id+",5)' href='javascript:void(0)'  style='color:blue;text-decoration: none;margin-right:15px' >取消置顶</a>";
 				            	  }
-				            	  htmls += "<a href='javascript:void(0)' style='color:red;text-decoration: none;' onclick='MessageManage.deleteMessage("+rowData.id+",5)' >删除</a>";
+				            	  htmls += "<a style='color:red;text-decoration: none;' onclick='MessageManage.deleteMessage("+rowData.id+",5)' >删除</a>";
 			            		  return htmls;
 				              },hidden: isdelete}
 				          ] ]
@@ -246,7 +246,7 @@ var MessageManage = {
 				            	  if(rowData.ishost){
 				            		  htmls += "<a onclick='MessageManage.changeMessageStatus("+rowData.id+",3)' href='javascript:void(0)'  style='color:blue;text-decoration: none;margin-right:15px' >取消置顶</a>";
 				            	  }
-				            	  htmls += "<a href='javascript:void(0)' style='color:red;text-decoration: none;' onclick='MessageManage.deleteMessage("+rowData.id+",3)' >删除</a>";
+				            	  htmls += "<a style='color:red;text-decoration: none;' onclick='MessageManage.deleteMessage("+rowData.id+",3)' >删除</a>";
 			            		  return htmls;
 				              },hidden: isdelete}
 				          ] ]
@@ -271,7 +271,7 @@ var MessageManage = {
 				columns : [ [ 
 				              { title : 'id', field : 'id', hidden : true },
 				              { title : '标题', field : 'title', align : 'left', width : 200,formatter:function(value,rowData,index){
-				            	  var html =  "<a href='javascript:void(0)' style='color:black;text-decoration: none;' onclick='MessageManage.clickAction("+rowData.id+")'>"+value+"</a>";
+				            	  var html =  "<a style='color:black;text-decoration: none;' onclick='MessageManage.clickAction("+rowData.id+")'>"+value+"</a>";
 				            	  if(rowData.ishost){
 				            		  html+="<img src='resource/calendarImage/new2.png' />";
 				            	  }
@@ -288,7 +288,7 @@ var MessageManage = {
 				            	  if(rowData.ishost){
 				            		  htmls += "<a onclick='MessageManage.changeMessageStatus("+rowData.id+",6)' href='javascript:void(0)'  style='color:blue;text-decoration: none;margin-right:15px' >取消置顶</a>";
 				            	  }
-				            	  htmls += "<a href='javascript:void(0)' style='color:red;text-decoration: none;' onclick='MessageManage.deleteMessage("+rowData.id+",6)' >删除</a>";
+				            	  htmls += "<a style='color:red;text-decoration: none;' onclick='MessageManage.deleteMessage("+rowData.id+",6)' >删除</a>";
 			            		  return htmls;
 				              },hidden: isdelete}
 				          ] ]
@@ -313,7 +313,7 @@ var MessageManage = {
 				columns : [ [ 
 				              { title : 'id', field : 'id', hidden : true },
 				              { title : '标题', field : 'title', align : 'left', width : 200,formatter:function(value,rowData,index){
-				            	  var html =  "<a href='javascript:void(0)' style='color:black;text-decoration: none;' onclick='MessageManage.clickAction("+rowData.id+")'>"+value+"</a>";
+				            	  var html =  "<a style='color:black;text-decoration: none;' onclick='MessageManage.clickAction("+rowData.id+")'>"+value+"</a>";
 				            	  if(rowData.ishost){
 				            		  html+="<img src='resource/calendarImage/new2.png' />";
 				            	  }
@@ -328,16 +328,18 @@ var MessageManage = {
 				              { title : '操作',   field : 'operation', align : 'right', width : 60,formatter:function(value,rowData,index){
 				            	  var htmls = "";
 				            	  if(rowData.ishost){
-				            		  htmls += "<a onclick='MessageManage.changeMessageStatus("+rowData.id+",7)' href='javascript:void(0)'  style='color:blue;text-decoration: none;margin-right:15px' >取消置顶</a>";
+				            		  htmls += "<a onclick='MessageManage.changeMessageStatus("+rowData.id+",7)' style='color:blue;text-decoration: none;margin-right:15px' >取消置顶</a>";
 				            	  }
-				            	  htmls += "<a href='javascript:void(0)' style='color:red;text-decoration: none;' onclick='MessageManage.deleteMessage("+rowData.id+",7)' >删除</a>";
+				            	  htmls += "<a style='color:red;text-decoration: none;' onclick='MessageManage.deleteMessage("+rowData.id+",7)' >删除</a>";
 			            		  return htmls;
 				              },hidden: isdelete}
 				          ] ]
 			});
 		},
 		clickAction:function(msgId){
-			window.location.href="/casebbs/caseBBS/gotoArticleInfo.do?id="+msgId+"&date="+m_dates+"&userName="+m_userName+"&userMark="+m_userMark;
+			window.navigate("/casebbs/caseBBS/gotoArticleInfo.do?id="+msgId+"&date="+m_dates+"&userName="+m_userName+"&userMark="+m_userMark);
+
+			//window.location.href="/casebbs/caseBBS/gotoArticleInfo.do?id="+msgId+"&date="+m_dates+"&userName="+m_userName+"&userMark="+m_userMark;
 		},
 		doSearch:function(){
 			var t_title ="";// $.trim($("#").val());
@@ -347,10 +349,12 @@ var MessageManage = {
 			$('#casePushListGrid').datagrid("reload",{'title' : t_title});
 		} ,
 		backToCalendar:function(){
-			window.location.href="/casebbs/caseBBS/gotoIndex.do?date="+m_dates+"&userName="+m_userName+"&userMark="+m_userMark; 
+			window.navigate("/casebbs/caseBBS/gotoIndex.do?date="+m_dates+"&userName="+m_userName+"&userMark="+m_userMark);
+			//window.location.href="/casebbs/caseBBS/gotoIndex.do?date="+m_dates+"&userName="+m_userName+"&userMark="+m_userMark; 
 		},
 		backToMessageList:function(){
-			window.location.href="/casebbs/caseBBS/gotoArticleList.do?date="+m_dates+"&userName="+m_userName+"&userMark="+m_userMark;
+			window.navigate("/casebbs/caseBBS/gotoArticleList.do?date="+m_dates+"&userName="+m_userName+"&userMark="+m_userMark);
+			//window.location.href="/casebbs/caseBBS/gotoArticleList.do?date="+m_dates+"&userName="+m_userName+"&userMark="+m_userMark;
 		},
 		publishNewMessage:function(){
 			m_publishInfo_dlg = art
@@ -362,39 +366,7 @@ var MessageManage = {
 				initFn : function() {
 					//InitUploadFun();
 					MessageManage.clearFrom();
-					$('#attchMentsGrid').datagrid({
-						url : 'caseBBS/getMessageAttchs.do',
-						param:{
-							"id" :m_message_id
-						},
-						fitColumns : true,	
-						rownumbers : true,
-						pagination : false,
-						pageNumber : 1,
-						pageSize : 10,
-						nowrap : false,
-						height:250,
-						idField : 'id',          
-						checkOnSelect: false,
-				        selectOnCheck: true, 
-				        onClickRow: MessageManage.attchsGridclickRow,
-						toolbar : "#attch_toolbar",
-						columns : [ [ 
-						              { title : 'id', field : 'id', hidden : true },
-						              { title : '附件名称', field : 'name', align : 'left', width : 150 ,formatter:function(value,rowData,index){
-						            	  return "<span style='color:black'>"+value+"</span>";
-						              }}, 
-						              { title : '附件类型', field : 'attchType', align : 'left', width : 100 ,formatter:function(value,rowData,index){
-						            	  return "<span style='color:black'>"+value+"</span>";
-						              }},
-						              { title : '上传时间', field : 'uploadTime', align : 'left', width : 100 ,formatter:function(value,rowData,index){
-						            	  return "<span style='color:black'>"+value+"</span>";
-						              }},
-						              { title : '操作',   field : 'operation', align : 'center', width : 100,formatter:function(value,rowData,index){
-					            		  return "<a href='javascript:void(0)' style='color:blue;text-decoration: none;' onclick='MessageManage.deleteItem("+rowData.id+")' >删除</a>";
-						              }}
-						          ] ]
-					});
+					 
 				},
 		        button: [
 		                 {
@@ -406,18 +378,11 @@ var MessageManage = {
 		                     focus: true
 		                 },
 		                 {
-		                     name: '关闭',
-		                     callback: function () { 
-		                    	 //getDateData(y + "-" + m + "-" + 1);// 初始化默认月份数据
-		                    	 window.location.href= "/casebbs/caseBBS/gotoArticleList.do?date="+m_dates+"&userName="+m_userName+"&userMark="+m_userMark;
-		                     }
+		                     name: '关闭' 
 		                 }
 		            ]
 			});
-		},
-		attchsGridclickRow:function(index, data) {
-			$("#attchMentsGrid").datagrid("unselectRow", index);
-		},
+		}, 
 		onCheckShop:function(){
 			var s = $("input[type='checkbox']:checked");
 			if(s.length>0){  
@@ -427,54 +392,59 @@ var MessageManage = {
 			}
 		},
 		saveMessageAction:function(){
-			var messageObj = {};
-			messageObj.title=$("#txttitle").val();
-			messageObj.typeId=$("#txtarticalType").combobox("getValue");
-			messageObj.description=$("#txtdescription").val();
-			messageObj.creator=1;
-			messageObj.creatorName=m_userName;
-			messageObj.organId=1;
-			messageObj.organName="案件处理交流机构";
-			messageObj.createTime = getCurrentDate();
-			messageObj.summary=$("#txtcontent").val();
-			//messageObj.ishost=false;
-			//if($("input:checkbox").attr("checked")=="checked"){
-				messageObj.ishost=m_isHost;
-			//}
-			$.ajax({
-				url : "caseBBS/saveMessage.do",
-				type : "POST",
-				dataType : "json",
-				data:messageObj,
-				async : true,
-				success : function(req) {
-					if (req.isSuccess) { 
-						m_message_id = req.data.id;
-						$("#msgId").val(m_message_id);
-						$("#messageid").val(m_message_id);
-						$.messager.alert("系统提示","<span style='color:black'>发帖成功~若有相关附件，请点击上传附件，若无附件，请点击“关闭”按钮关闭当前页面</span>","info");
-						//MessageManage.clearFrom();
-						//m_publishInfo_dlg.close();
-						if(messageObj.typeId == 1 || messageObj.typeId == "1"){
-							$("#jdcGrid").datagrid("reload");
-						}else if(messageObj.typeId == 2 || messageObj.typeId == "2"){
-							$("#jdwGrid").datagrid("reload");
-						}else if(messageObj.typeId == 3 || messageObj.typeId == "3"){
-							$("#rdGrid").datagrid("reload");
-						}else if(messageObj.typeId == 4 || messageObj.typeId == "4"){
-							$("#qjGrid").datagrid("reload");
-						}else if(messageObj.typeId == 5 || messageObj.typeId == "5"){
-							$("#zpGrid").datagrid("reload");
-						}else if(messageObj.typeId == 6 || messageObj.typeId == "6"){
-							$("#gzGrid").datagrid("reload");
-						}else if(messageObj.typeId == 7 || messageObj.typeId == "7"){
-							$("#jyGrid").datagrid("reload");
-						}
-					}else{
-						$.messager.alert("系统提示","<span style='color:black'>发帖失败咯~</span>","error");
-					}
+			if(m_message_id>0){
+				if(m_publishInfo_dlg!=null){
+					m_publishInfo_dlg.close();
+					window.location.href= "/casebbs/caseBBS/gotoArticleList.do?date="+m_dates+"&userName="+m_userName+"&userMark="+m_userMark;s
 				}
-			});
+			}else{ 
+				var messageObj = {};
+				messageObj.title=$("#txttitle").val();
+				messageObj.typeId=$("#txtarticalType").combobox("getValue");
+				messageObj.description=$("#txtdescription").val();
+				messageObj.creator=1;
+				messageObj.creatorName=m_userName;
+				messageObj.organId=1;
+				messageObj.organName="案件处理交流机构";
+				messageObj.createTime = getCurrentDate();
+				messageObj.summary=$("#txtcontent").val();
+				//messageObj.ishost=false;
+				//if($("input:checkbox").attr("checked")=="checked"){
+					messageObj.ishost=m_isHost;
+				//}
+				$.ajax({
+					url : "caseBBS/saveMessage.do",
+					type : "POST",
+					dataType : "json",
+					data:messageObj,
+					async : true,
+					success : function(req) {
+						if (req.isSuccess) { 
+							m_message_id = req.data.id;
+							$("#msgId").val(m_message_id);
+							$("#messageid").val(m_message_id); 
+							excelChange();
+							if(messageObj.typeId == 1 || messageObj.typeId == "1"){
+								$("#jdcGrid").datagrid("reload");
+							}else if(messageObj.typeId == 2 || messageObj.typeId == "2"){
+								$("#jdwGrid").datagrid("reload");
+							}else if(messageObj.typeId == 3 || messageObj.typeId == "3"){
+								$("#rdGrid").datagrid("reload");
+							}else if(messageObj.typeId == 4 || messageObj.typeId == "4"){
+								$("#qjGrid").datagrid("reload");
+							}else if(messageObj.typeId == 5 || messageObj.typeId == "5"){
+								$("#zpGrid").datagrid("reload");
+							}else if(messageObj.typeId == 6 || messageObj.typeId == "6"){
+								$("#gzGrid").datagrid("reload");
+							}else if(messageObj.typeId == 7 || messageObj.typeId == "7"){
+								$("#jyGrid").datagrid("reload");
+							}
+						}else{
+							$.messager.alert("系统提示","<span style='color:black'>发帖失败咯~</span>","error");
+						}
+					}
+				});
+			}
 		},
 		clearFrom:function(){
 			$("#txisHost").attr("checked","false");
@@ -557,8 +527,7 @@ var MessageManage = {
 				success : function(req) {
 					if (req.isSuccess) { 
 						$.messager.alert("操作提示","<span style='color:black'>删除成功~</span>","info");
-						var msgId = $("#msgId").val();
-						$('#attchMentsGrid').datagrid("reload",{"id":msgId});
+						var msgId = $("#msgId").val(); 
 					}else{
 						$.messager.alert("操作提示","<span style='color:black'>删除失败~</span>","error");
 					}
@@ -568,25 +537,12 @@ var MessageManage = {
 };
 
 
-function excelChange(file){
-	  /*if(!(/(?:xls)$/i.test(file.value))) {
-	        $.messager.alert('错误', "只允许上传xls的文档", 'error'); 
-	        if(window.ActiveXObject) {//for IE
-	            file.select();//select the file ,and clear selection
-	            document.selection.clear();
-	        } else if(window.opera) {//for opera
-	            file.type="text";file.type="file";
-	        } else file.value="";//for FF,Chrome,Safari
-	    } else {*/	
-	    	$('#fileForms').form('submit',{
-				success : function(data) {
-					reloadListAction();
-					$("#jfile").val("");
-				}
-			});	 
-	    //}
-}
-function reloadListAction(){
-	var msgId = $("#msgId").val();
-	$('#attchMentsGrid').datagrid("reload",{"id":msgId});
-}
+function excelChange(){ 
+	$('#fileForms').form('submit',{
+		success : function(data) { 
+			$.messager.alert("系统提示","<span style='color:black'>发帖成功~</span>","info",function(){
+				m_publishInfo_dlg.close(); 
+			});
+		}
+	});	  
+} 
