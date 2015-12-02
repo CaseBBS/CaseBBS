@@ -187,7 +187,7 @@ var MessageManage = {
 				columns : [ [ 
 				              { title : 'id', field : 'id', hidden : true },
 				              { title : '标题', field : 'title', align : 'left', width : 200,formatter:function(value,rowData,index){
-				            	  var html =  "<a href='javascript:void(0)' style='color:black;text-decoration: none;' onclick='MessageManage.clickAction("+rowData.id+")'>"+value+"</a>";
+				            	  var html =  "<a style='color:black;text-decoration: none;' onclick='MessageManage.clickAction("+rowData.id+")'>"+value+"</a>";
 				            	  if(rowData.ishost){
 				            		  html+="<img src='resource/calendarImage/new2.png' />";
 				            	  }
@@ -229,7 +229,7 @@ var MessageManage = {
 				columns : [ [ 
 				              { title : 'id', field : 'id', hidden : true },
 				              { title : '标题', field : 'title', align : 'left', width : 200,formatter:function(value,rowData,index){
-				            	  var html =  "<a href='javascript:void(0)' style='color:black;text-decoration: none;' onclick='MessageManage.clickAction("+rowData.id+")'>"+value+"</a>";
+				            	  var html =  "<a style='color:black;text-decoration: none;' onclick='MessageManage.clickAction("+rowData.id+")'>"+value+"</a>";
 				            	  if(rowData.ishost){
 				            		  html+="<img src='resource/calendarImage/new2.png' />";
 				            	  }
@@ -391,14 +391,15 @@ var MessageManage = {
 				m_isHost = false;
 			}
 		},
-		saveMessageAction:function(){
-			if(m_message_id>0){
-				if(m_publishInfo_dlg!=null){
-					m_publishInfo_dlg.close();
-					window.location.href= "/casebbs/caseBBS/gotoArticleList.do?date="+m_dates+"&userName="+m_userName+"&userMark="+m_userMark;s
-				}
-			}else{ 
+		saveMessageAction:function(){ 
 				var messageObj = {};
+				var titles = $.trim($("#txttitle").val());
+				if(titles.length==0){
+					$.messager.alert("系统提示","<span style='color:black'>标题不能为空</span>","info",function(){
+						return;
+					}); 
+					return;
+				}
 				messageObj.title=$("#txttitle").val();
 				messageObj.typeId=$("#txtarticalType").combobox("getValue");
 				messageObj.description=$("#txtdescription").val();
@@ -407,6 +408,13 @@ var MessageManage = {
 				messageObj.organId=1;
 				messageObj.organName="案件处理交流机构";
 				messageObj.createTime = getCurrentDate();
+				var summarys = $.trim($("#txtcontent").val());
+				if(summarys.length==0){
+					$.messager.alert("系统提示","<span style='color:black'>内容不能为空</span>","info",function(){
+						return;
+					}); 
+					return;
+				}
 				messageObj.summary=$("#txtcontent").val();
 				//messageObj.ishost=false;
 				//if($("input:checkbox").attr("checked")=="checked"){
@@ -443,8 +451,7 @@ var MessageManage = {
 							$.messager.alert("系统提示","<span style='color:black'>发帖失败咯~</span>","error");
 						}
 					}
-				});
-			}
+				}); 
 		},
 		clearFrom:function(){
 			$("#txisHost").attr("checked","false");

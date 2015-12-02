@@ -181,6 +181,13 @@ var MessageManage = {
 		var feedInfo ={};
 		feedInfo.id = 0;
 		feedInfo.articalId = m_messageId;
+		var contents = $.trim($("#feedContent").val());
+		if(contents.length==0){
+			$.messager.alert("系统提示","<span style='color:black'>回复内容不能为空</span>","info",function(){
+				return;
+			}); 
+			return;
+		}
 		feedInfo.contents = $("#feedContent").val();
 		feedInfo.isneeded = false;
 		feedInfo.needUnitId = 1;

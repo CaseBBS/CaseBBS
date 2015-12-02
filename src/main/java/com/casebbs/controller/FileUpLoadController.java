@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,10 +36,10 @@ public class FileUpLoadController extends CommonsMultipartResolver {
 	CaseBBSService caseBBSService;
 	 
 		@ResponseBody
-		@RequestMapping(value = "/uploadAttch.do")
+		@RequestMapping(value = "/uploadAttch.do", produces = "text/plain;charset=UTF-8")
 		public String uploadDeviceExcelFile(
 				HttpServletRequest request, HttpServletResponse response,
-				@RequestParam(value = "messageid", required = true) Integer id,
+				@RequestParam(value = "messageid", required = false) Integer id,
 				@RequestParam(value = "file1", required = false) MultipartFile file1,
 				@RequestParam(value = "file2", required = false) MultipartFile file2,
 				@RequestParam(value = "file3", required = false) MultipartFile file3,
@@ -256,11 +257,11 @@ public class FileUpLoadController extends CommonsMultipartResolver {
 			
 
 			@ResponseBody
-			@RequestMapping(value = "/uploadItemAttch.do")
+			@RequestMapping(value = "/uploadItemAttch.do", produces = "text/plain;charset=UTF-8")
 			public String uploadItemAttch(
 					HttpServletRequest request, HttpServletResponse response,
-					@RequestParam(value = "itemmessageid", required = true) Integer id,
-					@RequestParam(value = "itemCreator", required = true) String itemCreator,
+					@RequestParam(value = "itemmessageid", required = false) Integer id,
+					@RequestParam(value = "itemCreator", required = false) String itemCreator,
 					@RequestParam(value = "itemfile1", required = false) MultipartFile file1,
 					@RequestParam(value = "itemfile2", required = false) MultipartFile file2,
 					@RequestParam(value = "itemfile3", required = false) MultipartFile file3 ) {

@@ -241,6 +241,13 @@ function onCheckShop(){
 }
 function saveMessageAction(){ 
 	var messageObj = {};
+	var titles = $.trim($("#txttitle").val());
+	if(titles.length==0){
+		$.messager.alert("系统提示","<span style='color:black'>标题不能为空</span>","info",function(){
+			return;
+		}); 
+		return;
+	}
 	messageObj.title=$("#txttitle").val();
 	messageObj.typeId=$("#txtarticalType").combobox("getValue");
 	messageObj.description=$("#txtdescription").val();
@@ -249,6 +256,13 @@ function saveMessageAction(){
 	messageObj.organId=1;
 	messageObj.organName="案件处理交流机构";
 	messageObj.createTime = getCurrentDate();
+	var summarys = $.trim($("#txtcontent").val());
+	if(summarys.length==0){
+		$.messager.alert("系统提示","<span style='color:black'>内容不能为空</span>","info",function(){
+			return;
+		}); 
+		return;
+	}
 	messageObj.summary=$("#txtcontent").val(); 
 	messageObj.ishost=m_isHost; 
 	$.ajax({
@@ -308,9 +322,10 @@ function deleteItem(id){
 function excelChange(){ 
 	$('#fileForms').form('submit',{
 		success : function(data) {
-			$.messager.alert("系统提示","<span style='color:black'>发帖成功~</span>","info");
-			m_publishInfo_dlg.close();
-			window.location.href="/casebbs/caseBBS/gotoIndex.do?userName="+m_userName;
+			$.messager.alert("系统提示","<span style='color:black'>发帖成功~</span>","info",function(){
+				m_publishInfo_dlg.close();
+				window.location.href="/casebbs/caseBBS/gotoIndex.do?userName="+m_userName;
+			});
 		}
 	});	  
 }

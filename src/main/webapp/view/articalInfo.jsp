@@ -60,7 +60,7 @@
    			<table style="width:580px;height:100px" >
    				<tr>
    					<td style="width:75px">
-   						<label>回复内容:</label>
+   						<label style="font-size:16px;font-weight:bold">回复内容:</label>
    					</td>
    					<td>
    						<textarea id="feedContent" style="width:100%" rows="4" ></textarea>
@@ -68,15 +68,15 @@
    				</tr> 
    				<tr>
    					<td style="width:75px">
-   						<label style="font-size:20px;font-weight:bold">上传附件:</label>
+   						<label style="font-size:16px;font-weight:bold">上传附件:</label>
    					</td>
    					<td> 
 			   				<form id="itemfileForms" name="itemfileForms" action="fileUpload/uploadItemAttch.do"  enctype="multipart/form-data" method="post" style="margin:0;padding:0;">
 							       	<input type="hidden" name="itemmessageid" id="itemmessageid" />
 									<input type="hidden" name="itemCreator" id="itemCreator" />
-							       	<input type="file" name="itemfile1" style="width:300px" />
-							       	<input type="file" name="itemfile2" style="width:300px" />
-							       	<input type="file" name="itemfile3" style="width:300px" /> 
+							       	<input type="file" name="itemfile1" style="width:300px; margin-top:5px;" />
+							       	<input type="file" name="itemfile2" style="width:300px; margin-top:5px;" />
+							       	<input type="file" name="itemfile3" style="width:300px; margin-top:5px;" /> 
 							</form> 
    					</td>
    				</tr> 

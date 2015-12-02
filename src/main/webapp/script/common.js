@@ -18,7 +18,7 @@ function getCurrentDate(){
 	var mydate = new Date();
 	var m = mydate.getMonth()+1;
 	var month = m>9?m:"0"+m;
-	var d = mydate.getDay();
+	var d = mydate.getDate();
 	var day = d>9?d:"0"+d;
 	var h = mydate.getHours();
 	var hour = h>9?h:"0"+9;
